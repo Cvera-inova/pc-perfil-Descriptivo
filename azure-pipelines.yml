@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+      - development
+    exclude:
+      - master
+ 
+variables:
+  vmImageName: 'ubuntu-latest'
+ 
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+ 
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '18.x'
+      displayName: 'Install Node.js'
+ 
+    - script: |
+        npm install
+        npm run build
+      displayName: 'npm install and build'
+      # env:
+      #   NEXT_PUBLIC_BACKEND_URL: $(PROD_NEXT_PUBLIC_BACKEND_URL)
+      #   NEXTAUTH_SECRET: $(NEXTAUTH_SECRET)
+ 
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
+ 
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifact: drop

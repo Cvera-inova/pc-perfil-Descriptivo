@@ -1,0 +1,104 @@
+.container {
+    background-color: #f7f7f7; /* Color de fondo externo */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .titleContainer {
+    background-color: var(--Primary, #21498e);
+    color: white;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .formContainer {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formHeader {
+    background-color: #b5d0ff;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2em;
+    color: black;
+    font-family: "Segoe UI";
+    font-size: 22px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media (min-width: 768px) {
+    .content {
+      flex-direction: row;
+    }
+  }
+  
+  .imageContainer {
+    position: relative;
+    flex: 1;
+    min-height: 300px;
+  }
+  
+  .formFields {
+    flex: 1;
+    padding: 20px;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .formFields label {
+    font-weight: bold;
+    color: #333;
+    font-size: 22px;
+    font-family: "Segoe UI";
+
+  }
+  
+  .formFields input,
+  .formFields select,
+  .formFields textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #eae7e7;
+    box-sizing: border-box;
+  }
+  
+  .formFields textarea {
+    resize: vertical;
+    height: 80px;
+  }
+  
+  .nextButton {
+    background-color: #21498e;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .nextButton:hover {
+    background-color: #1a3b75;
+  }
+  

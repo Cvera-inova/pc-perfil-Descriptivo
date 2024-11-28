@@ -1,0 +1,500 @@
+{
+  "perfiles": [
+    {
+      "id": "1",
+      "datos_e_identificacion_del_cargo": [
+        {
+          "id": "1",
+          "nombre_del_cargo": "Security Engineer",
+          "departamento": "Tecnologías de la Información",
+          "reporta_a": "Coordinador de Servicios TI",
+          "supervisa_a": "No aplica",
+          "ciudad": "Quito",
+          "direccion": "Edificio Torres Sol Verde",
+          "teletrabajo": "NO",
+          "mision_del_cargo": "Proveer servicios de consultoría especializada en seguridad informática, garantizar la integridad, confidencialidad y disponibilidad de la información y de los recursos tecnológicos contratados y participar en la preventa de soluciones de seguridad."
+        }
+      ],
+      "datos": [
+        {
+          "id": "1",
+          "actividades": [
+            {
+              "id": 1,
+              "actividad": "Evaluar vulnerabilidades en sistemas de los clientes sobre los servicios contratados.",
+              "indicadoresKPI": "Informe de análisis de vulnerabilidades identificadas",
+              "formulaMedicion": "#informes de vulnerabilidades generados al mes / #de clientes asignados en el mes * 100",
+              "frecuencia": 1,
+              "impacto": 1,
+              "dificultad": 1,
+              "total": 25,
+              "esEsencial": "SI"
+            },
+            {
+              "id": 2,
+              "actividad": "Monitorear alertas de seguridad con base en las políticas implementadas para los clientes.",
+              "indicadoresKPI": "Informe de amenazas detectadas exitosamente",
+              "formulaMedicion": "#informes generados (de alertas) al mes / #de clientes asignados en el mes * 100",
+              "frecuencia": 1,
+              "impacto": 1,
+              "dificultad": 1,
+              "total": 35,
+              "esEsencial": "SI"
+            }
+          ],
+          "responsabilidadYAutoridad": {
+            "responsabilidad": "Representar a la empresa en el ámbito de servicios de ciberseguridad y actuar como el principal punto de contacto para todas las cuestiones de seguridad técnica ante clientes externos.",
+            "autoridad": "Asesorar, recomendar e implementar medidas y herramientas de seguridad adecuadas para los clientes."
+          },
+          "relacionamiento": {
+            "clientesInternos": {
+              "aplica": "NO APLICA"
+            },
+            "clientesExternos": {
+              "aplica": "APLICA"
+            },
+            "ausenciaTemporal": "Technical Support Senior / Coordinador de Servicios TI"
+          }
+        }
+      ],
+      "competencias_requeridas": [
+        {
+          "id": "1",
+          "competencias": [
+            {
+              "descripcion": "Conocimiento en normas ISO 27001, ISO 27002.",
+              "tipo": "Competencia técnica",
+              "grado": "Básico"
+            },
+            {
+              "descripcion": "Conocimiento en la implementación de normativas de seguridad y estándares.",
+              "tipo": "Competencia técnica",
+              "grado": "Básico"
+            },
+            {
+              "descripcion": "Conocimiento en análisis de riesgos de seguridad informática.",
+              "tipo": "Competencia técnica",
+              "grado": "Intermedio"
+            },
+            {
+              "descripcion": "Conocimiento en tecnologías de firewall y sistemas de detección y prevención de intrusos.",
+              "tipo": "Competencia técnica",
+              "grado": "Intermedio"
+            },
+            {
+              "descripcion": "Conocimiento en protección de datos y privacidad.",
+              "tipo": "Competencia técnica",
+              "grado": "Avanzado"
+            },
+            {
+              "descripcion": "Conocimiento en ciberseguridad, herramientas y procedimientos.",
+              "tipo": "Competencia técnica",
+              "grado": "Avanzado"
+            },
+            {
+              "descripcion": "Experiencia en trabajo con proveedores de ciberseguridad.",
+              "tipo": "Competencia técnica",
+              "grado": "Avanzado"
+            }
+          ]
+        }
+      ],
+      "versiones": [
+        {
+          "id": "1",
+          "examenes": [
+            {
+              "tipo": "preocupacional",
+              "examenes": [
+                "Biometría hemática, fórmula leucocitaria",
+                "Glucosa basal",
+                "Urea",
+                "Creatinina en suero",
+                "Colesterol total",
+                "Triglicéridos",
+                "VDRL",
+                "anticuerpos anti-HIV 1&2",
+                "Coproparasitario",
+                "Uroanálisis",
+                "Optometría",
+                "Rx AP + L DE columna Cervico Dorsal"
+              ]
+            },
+            {
+              "tipo": "periodico",
+              "examenes": [
+                "Biometría hemática, fórmula leucocitaria",
+                "Glucosa basal",
+                "Urea",
+                "Creatinina en suero",
+                "Colesterol total",
+                "Triglicéridos",
+                "VDRL",
+                "Coproparasitario",
+                "Elemental y microscópico de orina",
+                "Agudeza visual (optometría)",
+                "Rx AP + L DE columna Cervico Dorsal"
+              ]
+            },
+            {
+              "tipo": "reintegro",
+              "opciones": [
+                "Opción 1: Reintegro total",
+                "Opción 2: Reintegro parcial",
+                "Opción 3: No aplica"
+              ]
+            },
+            {
+              "tipo": "especiales",
+              "opciones": [
+                "Opción 1: Exámenes adicionales",
+                "Opción 2: Evaluación médica especializada",
+                "Opción 3: Otros"
+              ]
+            },
+            {
+              "tipo": "salida",
+              "examenes": [
+                "Biometría hemática, fórmula leucocitaria",
+                "Glucosa basal",
+                "Urea",
+                "Creatinina en suero",
+                "Colesterol total",
+                "Triglicéridos",
+                "VDRL",
+                "Coproparasitario",
+                "Elemental y microscópico de orina",
+                "Agudeza visual (optometría)",
+                "Rx AP + L DE columna Cervico Dorsal"
+              ]
+            }
+          ]
+        }
+      ],
+      "perfiles_detalle": [
+        {
+          "id": "perfil_1",
+          "perfilDuro": {
+            "formaciones": [
+              {
+                "formacion": "Posgrado en",
+                "especialidad": "Ingeniería de Sistemas y Computación",
+                "tiempo": "5 años"
+              },
+              {
+                "formacion": "Licenciatura en",
+                "especialidad": "Ingeniería Informática",
+                "tiempo": "4 años"
+              },
+              {
+                "formacion": "Técnico en",
+                "especialidad": "Electrónica",
+                "tiempo": "3 años"
+              }
+            ]
+          },
+          "otrosRequerimientos": [
+            {
+              "requerimiento": "Disponibilidad para viajar",
+              "respuesta": "Sí",
+              "detalles": "Latam y USA"
+            },
+            {
+              "requerimiento": "Conocimientos específicos",
+              "respuesta": "Sí",
+              "detalles": "MS 365 - Microsoft Security"
+            }
+          ],
+          "condicionesCargo": [
+            {
+              "condicion": "Útiles, herramientas o maquinaria de trabajo utilizados",
+              "detalle": "Computador, mouse, auriculares, monitor, plan de internet, teclado, elevador."
+            },
+            {
+              "condicion": "Exigencias Funcionales",
+              "detalle": "Honestidad, Confidencialidad, Puntualidad, Responsabilidad, Disponibilidad para turnos rotativos feriados y fines de semana."
+            },
+            {
+              "condicion": "Horario de trabajo",
+              "detalle": "9h00 a 18h00 con 1 hora de almuerzo."
+            }
+          ]
+        }
+      ],
+      "riesgosDelCargo": [
+        {
+          "id": "1",
+          "factoresDeRiesgo": [
+            {
+              "tipo": "Mecánico",
+              "riesgos": [
+                {
+                  "peligroIdentificado": "Peligro Mecánico 1",
+                  "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico 1",
+                  "probabilidad": "B",
+                  "consecuencia": "LD",
+                  "nivelDeRiesgo": "TV"
+                },
+                {
+                  "peligroIdentificado": "Peligro Mecánico 2",
+                  "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico 2",
+                  "probabilidad": "M",
+                  "consecuencia": "D",
+                  "nivelDeRiesgo": "TOL"
+                },
+                {
+                  "peligroIdentificado": "Peligro Mecánico 3",
+                  "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico 3",
+                  "probabilidad": "A",
+                  "consecuencia": "ED",
+                  "nivelDeRiesgo": "MOD"
+                }
+              ]
+            },
+            {
+              "tipo": "Químico",
+              "riesgos": [
+                {
+                  "peligroIdentificado": "Peligro Químico 1",
+                  "descripcion": "Describa la situación de riesgo relacionada con el peligro químico 1",
+                  "probabilidad": "B",
+                  "consecuencia": "LD",
+                  "nivelDeRiesgo": "TV"
+                },
+                {
+                  "peligroIdentificado": "Peligro Químico 2",
+                  "descripcion": "Describa la situación de riesgo relacionada con el peligro químico 2",
+                  "probabilidad": "M",
+                  "consecuencia": "D",
+                  "nivelDeRiesgo": "TOL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "datos_e_identificacion_del_cargo": [
+        {
+          "id": "2",
+          "nombre_del_cargo": "papi JAIR",
+          "departamento": "dsa",
+          "reporta_a": "sda",
+          "supervisa_a": "dsa",
+          "ciudad": "dsa",
+          "direccion": "dsa",
+          "teletrabajo": "No",
+          "mision_del_cargo": "dsa"
+        }
+      ],
+      "datos": [
+        {
+          "id": "2",
+          "actividades": [
+            {
+              "id": 1,
+              "actividad": "dsa",
+              "indicadoresKPI": "dsa",
+              "formulaMedicion": "dsa",
+              "frecuencia": "3",
+              "impacto": 1,
+              "dificultad": 1,
+              "total": 28,
+              "esEsencial": "Sí"
+            },
+            {
+              "id": 2,
+              "actividad": "dsa",
+              "indicadoresKPI": "dsa",
+              "formulaMedicion": "sad",
+              "frecuencia": 1,
+              "impacto": 1,
+              "dificultad": "3",
+              "total": 28,
+              "esEsencial": "Sí"
+            }
+          ],
+          "responsabilidadYAutoridad": {
+            "responsabilidad": "Mi amor",
+            "autoridad": "dsadas"
+          },
+          "relacionamiento": {
+            "clientesInternos": {
+              "aplica": "APLICA"
+            },
+            "clientesExternos": {
+              "aplica": "NO APLICA"
+            },
+            "ausenciaTemporal": "dsa"
+          }
+        }
+      ],
+      "competencias_requeridas": [
+        {
+          "id": "2",
+          "competencias": [
+            {
+              "descripcion": "das",
+              "tipo": "Competencia técnica",
+              "grado": "Intermedio"
+            },
+            {
+              "descripcion": "dsa",
+              "tipo": "Competencia interpersonal",
+              "grado": "Intermedio"
+            }
+          ]
+        }
+      ],
+      "versiones": [
+       
+        {
+          "examenes": [
+            {
+              "tipo": "preocupacional",
+              "examenes": [
+                "Biometría hemática",
+                "Rx AP + L DE columna Cervico Dorsal"
+              ]
+            },
+            {
+              "tipo": "periodico",
+              "examenes": [
+                "Glucosa basal",
+                "Creatinina en suero",
+                "VDRL"
+              ]
+            },
+            {
+              "tipo": "reintegro",
+              "opcionSeleccionada": "Opción 2: Reintegro parcial"
+            },
+            {
+              "tipo": "especiales",
+              "opcionSeleccionada": "Opción 1: Exámenes adicionales"
+            },
+            {
+              "tipo": "salida",
+              "examenes": [
+                "Biometría hemática",
+                "Glucosa basal"
+              ]
+            }
+          ]
+        }
+      ],
+      "perfiles_detalle": [
+        {
+          "id": "perfil_2",
+          "perfilDuro": {
+            "posgrado": "bebe",
+            "tiempoPosgrado": "Menos de 1 año",
+            "tecnologia": "dsa",
+            "tiempoTecnologia": "2 años",
+            "bachiller": "dsa",
+            "tiempoBachiller": "2 años",
+            "certificacion": "dsa",
+            "tiempoCertificacion": "2 años",
+            "licencias": "dsa",
+            "tiempoLicencias": "1 año",
+            "idiomas": "dsa",
+            "tiempoIdiomas": "1 año",
+            "experiencia": "dsa",
+            "tiempoExperiencia": "Menos de 1 año",
+            "disponibilidadViajar": "Sí",
+            "lugaresViajar": "dsa",
+            "conocimientos": "dsa",
+            "descripcionConocimiento": "sda",
+            "herramientas": "das",
+            "exigencias": "dsa",
+            "horarioEntrada": "17:28",
+            "horarioSalida": "17:28",
+            "horarioAlmuerzo": "22:23"
+          },
+          "otrosRequerimientos": [],
+          "condicionesCargo": []
+        }
+      ],
+      "riesgosDelCargo": [
+        {
+          "id": "2",
+          "factoresDeRiesgo": [
+            {
+              "tipo": "Mecánico",
+              "riesgos": [
+                {
+                  "peligroIdentificado": "dsa",
+                  "descripcion": "dsa",
+                  "probabilidad": "M",
+                  "consecuencia": "LD",
+                  "nivelDeRiesgo": "TV"
+                },
+                {
+                  "peligroIdentificado": "dsa",
+                  "descripcion": "dsa",
+                  "probabilidad": "B",
+                  "consecuencia": "D",
+                  "nivelDeRiesgo": "TV"
+                },
+                {
+                  "peligroIdentificado": "dsa",
+                  "descripcion": "dsa",
+                  "probabilidad": "A",
+                  "consecuencia": "LD",
+                  "nivelDeRiesgo": "TV"
+                }
+              ]
+            },
+            {
+              "tipo": "Químico",
+              "riesgos": [
+                {
+                  "peligroIdentificado": "dsa",
+                  "descripcion": "dsa",
+                  "probabilidad": "M",
+                  "consecuencia": "LD",
+                  "nivelDeRiesgo": "TV"
+                },
+                {
+                  "peligroIdentificado": "dsa",
+                  "descripcion": "dsa",
+                  "probabilidad": "B",
+                  "consecuencia": "LD",
+                  "nivelDeRiesgo": "TV"
+                }
+              ]
+            },
+            {
+              "tipo": "Eléctrico",
+              "riesgos": [
+                {
+                  "peligroIdentificado": "das",
+                  "descripcion": "dsa",
+                  "probabilidad": "B",
+                  "consecuencia": "LD",
+                  "nivelDeRiesgo": "TV"
+                },
+                {
+                  "peligroIdentificado": "dsa",
+                  "descripcion": "dsa",
+                  "probabilidad": "M",
+                  "consecuencia": "LD",
+                  "nivelDeRiesgo": "TV"
+                },
+                {
+                  "peligroIdentificado": "dsa",
+                  "descripcion": "sad",
+                  "probabilidad": "B",
+                  "consecuencia": "LD",
+                  "nivelDeRiesgo": "TV"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

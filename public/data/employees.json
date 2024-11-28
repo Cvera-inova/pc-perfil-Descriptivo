@@ -1,0 +1,24 @@
+[
+    { 
+      "id": 0, 
+      "nombre": "Juan Pérez", 
+      "cuenta": "juan.perez@example.com", 
+      "extension": "101",
+      "foto": "https://via.placeholder.com/100"
+    },
+    { 
+      "id": 1, 
+      "nombre": "María Gómez", 
+      "cuenta": "maria.gomez@example.com", 
+      "extension": "102",
+      "foto": "https://via.placeholder.com/100"
+    },
+    { 
+      "id": 2, 
+      "nombre": "Carlos López", 
+      "cuenta": "carlos.lopez@example.com", 
+      "extension": "103",
+      "foto": "https://via.placeholder.com/100"
+    }
+  ]
+  

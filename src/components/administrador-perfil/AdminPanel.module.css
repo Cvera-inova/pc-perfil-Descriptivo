@@ -1,0 +1,122 @@
+.adminPanel {
+    padding: 30px;
+    background-color: #f4f7fa;
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .adminTitle {
+    margin-bottom: 30px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: center;
+  }
+  
+  .addButton {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .addButton:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  .profilesTitle {
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #555;
+    text-align: center;
+  }
+  
+  .profilesList {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .profileCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .profileCard:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .profileInfo {
+    flex-grow: 1;
+  }
+  
+  .profileTitle {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .profileDepartment {
+    margin: 5px 0;
+    font-family: 'Arial', sans-serif;
+    color: #777;
+  }
+  
+  .profileMission {
+    margin: 0;
+    font-family: 'Arial';
+    color: #555;
+    font-style: italic;
+  }
+  
+  .profileActions {
+    display: flex;
+  }
+  
+  .actionButton {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 5px;
+  }
+  
+  .editButton {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .deleteButton {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .editButton:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .deleteButton:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+  

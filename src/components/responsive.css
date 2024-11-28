@@ -1,0 +1,243 @@
+/* Responsive Componente Banner*/
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 430px){
+
+  .bannerText {
+    font-size: 10vw !important; 
+  }
+
+  .bannerSlogan {
+    font-size: 6vw !important; 
+  }
+}
+
+@media (max-width: 412px){
+
+    .bannerText {
+      font-size: 10vw !important; 
+    }
+  
+    .bannerSlogan {
+      font-size: 6vw !important; 
+    }
+}
+
+/* Responsive Componente Eventos*/
+
+/* Estilo general de grid-container */
+.grid-container {
+    display: flex; 
+    justify-content: center; 
+    position: absolute; 
+    left: 0; 
+    width: 100%; 
+    transform: translateY(130%); 
+    z-index: 2;
+    flex-wrap: wrap; 
+  }
+
+  @media (max-width: 1235px) {
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+      transform: translateY(60%); /* Ajuste vertical si es necesario */
+    }
+  
+    .grid-container > * {
+      flex: 1 1 calc(50% - 10px); /* Cada elemento ocupa el 50% del ancho del contenedor menos el espacio entre ellos */
+      box-sizing: border-box; /* Asegura que el padding y el borde no afecten el tamaño total */
+      min-width: 150px; /* Ajusta según el tamaño deseado de las tarjetas */
+      max-width: calc(50% - 10px); /* Mantiene el tamaño de las tarjetas consistente */
+      padding: 10px; /* Añade un pequeño espacio alrededor de los elementos */
+    }
+  }
+  
+  /* Media query para pantallas muy pequeñas */
+  @media (max-width: 414px) {
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+      transform: translateY(40%); /* Ajuste vertical si es necesario */
+    }
+  
+    .grid-container > * {
+      flex: 1 1 calc(50% - 10px); /* Cada elemento ocupa el 50% del ancho del contenedor menos el espacio entre ellos */
+      box-sizing: border-box; /* Asegura que el padding y el borde no afecten el tamaño total */
+      min-width: 150px; /* Ajusta según el tamaño deseado de las tarjetas */
+      max-width: calc(50% - 10px); /* Mantiene el tamaño de las tarjetas consistente */
+      padding: 10px; /* Añade un pequeño espacio alrededor de los elementos */
+    }
+  }
+
+  /* Responsive componente identidad */
+
+  
+@media (max-width: 1235px) {
+    .cardInfoContainer {
+      padding-top: 500px !important; 
+    }
+}
+
+@media (max-width: 762px) {
+    .separator {
+      background-color: #E9EDF4 !important; 
+    }
+}
+
+@media (max-width: 430px) {
+  .separator {
+    background-color: #E9EDF4 !important; 
+  }
+  .cardInfoContainer {
+      padding-top: 250px !important; 
+  }
+}
+
+@media (max-width: 412px) {
+    .separator {
+      background-color: #E9EDF4 !important; 
+    }
+    .cardInfoContainer {
+        padding-top: 250px !important; 
+    }
+}
+
+@media (max-width: 375px) {
+
+  .separator {
+      height: 0px !important;
+  }
+}
+
+
+/* Componente áreas*/
+.grid-areas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 1300px;
+  }
+
+  @media (max-width: 1239px) {
+    .areasContainer {
+        height: 450px !important;
+    }
+    .grid-areas-container > * {
+        margin-bottom: 20px; /* Agrega un margen inferior de 20px */
+      }
+  }
+
+  @media (max-width: 759px) {
+    .grid-areas-container {
+      justify-content: center; /* Centra los elementos en la pantalla */
+    }
+  
+    .grid-areas-container > * {
+      flex: 1 1 calc(50% - 20px); /* Ocupa 50% del ancho menos 20px para el espaciado */
+      margin: 10px;
+      max-width: calc(50% - 20px); /* Mantiene el tamaño consistente */
+    }
+    .areasContainer {
+        height: 600px !important;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .grid-areas-container {
+      justify-content: center; /* Centra los elementos en la pantalla */
+    }
+  
+    .grid-areas-container > * {
+      flex: 1 1 calc(50% - 20px); /* Ocupa 50% del ancho menos 20px para el espaciado */
+      margin: 10px;
+      max-width: calc(50% - 20px); /* Mantiene el tamaño consistente */
+    }
+    .areasContainer {
+        height: 600px !important;
+    }
+  }
+
+  @media (max-width: 412px) {
+    .grid-areas-container {
+      justify-content: center; /* Centra los elementos en la pantalla */
+    }
+  
+    .grid-areas-container > * {
+      flex: 1 1 calc(50% - 20px); /* Ocupa 50% del ancho menos 20px para el espaciado */
+      margin: 10px;
+      max-width: calc(50% - 20px); /* Mantiene el tamaño consistente */
+    }
+    .areasContainer {
+        height: 600px !important;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .grid-areas-container {
+        justify-content: center; /* Centra los elementos en la pantalla */
+      }
+    
+      .grid-areas-container > * {
+        flex: 1 1 calc(50% - 20px); /* Ocupa 50% del ancho menos 20px para el espaciado */
+        margin: 10px;
+        max-width: calc(50% - 20px); /* Mantiene el tamaño consistente */
+      }
+      .areasContainer {
+          height: 600px !important;
+      }
+  }
+
+  /*Componente footer*/
+
+  @media (max-width: 430px) {
+    .text {
+      font-size: 15px !important;
+    }
+    
+    .icons-container {
+      margin-top: 5px !important;
+    }
+    .logoContainer img {
+      width: 120px !important; 
+      height: 80px !important;
+    }
+    .microsoft-icon {
+      margin-left: 10px !important; 
+    }
+  }
+  
+  @media (max-width: 412px) {
+    .text {
+      font-size: 15px !important;
+    }
+    
+    .icons-container {
+      margin-top: 5px !important;
+    }
+    .logoContainer img {
+      width: 120px !important; 
+      height: 80px !important;
+    }
+    .microsoft-icon {
+      margin-left: 10px !important; 
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .text {
+      font-size: 12px !important;
+    }
+    
+    .icons-container {
+      margin-top: 5px !important;
+    }
+    .logoContainer img {
+      width: 90px !important; 
+      height: 50px !important;
+    }
+    .microsoft-icon {
+      margin-left: 10px !important; 
+    }
+  }

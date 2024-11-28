@@ -1,0 +1,277 @@
+/* Estilos generales para pantallas grandes */
+.header {
+    background-color: #264b8b;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex: 4pc;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    margin-bottom: -110px;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    flex-shrink: 0;
+    object-fit: contain;
+    margin-bottom: 120px;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+/* Nueva clase para controlar la visibilidad del logo en responsive */
+.logoResponsive {
+    display: flex;
+}
+
+.hamburger {
+    display: none; /* Oculto por defecto en pantallas grandes */
+}
+
+.bar {
+    width: 35px;
+    height: 5px;
+    background-color: #ffffff;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Clases para animación del menú hamburguesa */
+.bar1 {
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.bar2 {
+    opacity: 0;
+}
+
+.bar3 {
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
+.nav {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    background-color: #f7f7f7;
+    padding: 0;
+    width: 100%;
+    font-size: 20px;
+}
+
+.navItem {
+    position: relative;
+    color: #21498e;
+    text-align: center;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.navLink {
+    color: #21498e;
+    text-decoration: none;
+    display: block;
+    padding: 25px 0;
+    transition: background-color 0.3s ease;
+    font-family: Calibri;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    background-color: inherit;
+    box-sizing: border-box;
+}
+
+.navItem:hover .navLink {
+    background-color: #21498e;
+    color: #ffffff;
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+}
+
+.navItem:hover .submenu {
+    display: flex;
+}
+
+.submenuItem {
+    position: relative;
+}
+
+.submenuLink {
+    padding: 20px 30px;
+    color: #21498e;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: Calibri;
+    font-size: 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.submenuLink:hover {
+    background-color: #21498e;
+    color: #ffffff;
+}
+
+/* Tercer nivel de submenú */
+.thirdLevelSubmenu {
+    position: absolute;
+    top: 0;
+    left: -250px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 250px;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+}
+
+.submenuItem:hover .thirdLevelSubmenu {
+    display: flex;
+}
+
+.thirdLevelSubmenuLink {
+    padding: 20px 30px;
+    color: #21498e;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: Calibri;
+    font-size: 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.thirdLevelSubmenuLink:hover {
+    background-color: #21498e;
+    color: #ffffff;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 0;
+        padding: 0 20px;
+    }
+
+    /* Ocultamos el logo en pantallas pequeñas */
+    .logoResponsive {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex; /* Muestra el menú hamburguesa en pantallas pequeñas */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 60px;
+        margin-top: 50px;
+    }
+
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        background-color: #f7f7f7;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    .navActive {
+        max-height: 1000px; /* Asegura que el menú se expanda completamente */
+    }
+
+    .navItem {
+        width: 100%;
+    }
+
+    .navLink {
+        padding: 15px 20px;
+        text-align: left;
+    }
+
+    .submenu {
+        position: static;
+        background-color: #eaeaea;
+        box-shadow: none;
+        width: 100%;
+        display: none;
+    }
+
+    .navItem.active .submenu,
+    .submenuItem.active .submenu {
+        display: flex;
+    }
+
+    .submenuItem {
+        width: 100%;
+    }
+
+    .submenuLink {
+        padding: 15px 40px;
+    }
+
+    .thirdLevelSubmenu {
+        position: static;
+        background-color: #dcdcdc;
+        box-shadow: none;
+        width: 100%;
+        display: none;
+    }
+
+    .submenuItem.active .thirdLevelSubmenu {
+        display: flex;
+    }
+
+    .thirdLevelSubmenuLink {
+        padding: 15px 60px;
+    }
+
+    /* Ajustes adicionales */
+    .navItem:hover .navLink,
+    .submenuLink:hover,
+    .thirdLevelSubmenuLink:hover {
+        background-color: inherit;
+        color: inherit;
+    }
+
+    .navItem.active .navLink,
+    .submenuItem.active .submenuLink,
+    .submenuItem.active .thirdLevelSubmenuLink {
+        background-color: #21498e;
+        color: #ffffff;
+    }
+}

@@ -1,0 +1,189 @@
+{
+  "competencias_requeridas": [
+    {
+      "id": "1",
+      "competencias": [
+        {
+          "descripcion": "Conocimiento en normas ISO 27001, ISO 27002.",
+          "tipo": "Competencia técnica",
+          "grado": "Básico"
+        },
+        {
+          "descripcion": "Conocimiento en la implementación de normativas de seguridad y estándares.",
+          "tipo": "Competencia técnica",
+          "grado": "Básico"
+        },
+        {
+          "descripcion": "Conocimiento en análisis de riesgos de seguridad informática.",
+          "tipo": "Competencia técnica",
+          "grado": "Intermedio"
+        },
+        {
+          "descripcion": "Conocimiento en tecnologías de firewall y sistemas de detección y prevención de intrusos.",
+          "tipo": "Competencia técnica",
+          "grado": "Intermedio"
+        },
+        {
+          "descripcion": "Conocimiento en protección de datos y privacidad.",
+          "tipo": "Competencia técnica",
+          "grado": "Avanzado"
+        },
+        {
+          "descripcion": "Conocimiento en ciberseguridad, herramientas y procedimientos.",
+          "tipo": "Competencia técnica",
+          "grado": "Avanzado"
+        },
+        {
+          "descripcion": "Experiencia en trabajo con proveedores de ciberseguridad.",
+          "tipo": "Competencia técnica",
+          "grado": "Avanzado"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "competencias": [
+        {
+          "descripcion": "Conocimiento en gestión de proyectos de seguridad informática.",
+          "tipo": "Competencia técnica",
+          "grado": "Básico"
+        },
+        {
+          "descripcion": "Capacidad para realizar auditorías de seguridad.",
+          "tipo": "Competencia técnica",
+          "grado": "Intermedio"
+        },
+        {
+          "descripcion": "Experiencia en respuesta a incidentes de seguridad.",
+          "tipo": "Competencia técnica",
+          "grado": "Intermedio"
+        },
+        {
+          "descripcion": "Conocimiento en tecnologías de cifrado y protección de la información.",
+          "tipo": "Competencia técnica",
+          "grado": "Avanzado"
+        },
+        {
+          "descripcion": "Conocimiento en arquitectura de seguridad de sistemas.",
+          "tipo": "Competencia técnica",
+          "grado": "Avanzado"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "Jair",
+          "tipo": "Competencia interpersonal",
+          "grado": "Intermedio"
+        },
+        {
+          "descripcion": "Jaircin",
+          "tipo": "Competencia técnica",
+          "grado": "Básico"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "dsa",
+          "tipo": "Competencia técnica",
+          "grado": "Avanzado"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "dsa",
+          "tipo": "Competencia interpersonal",
+          "grado": "Intermedio"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "jair",
+          "tipo": "Competencia técnica",
+          "grado": "Intermedio"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "dsa",
+          "tipo": "Competencia técnica",
+          "grado": "Intermedio"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "dsa",
+          "tipo": "Competencia interpersonal",
+          "grado": "Básico"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "s",
+          "tipo": "Competencia interpersonal",
+          "grado": "Básico"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "bebe",
+          "tipo": "Competencia técnica",
+          "grado": "Básico"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "dasd",
+          "tipo": "Competencia técnica",
+          "grado": "Intermedio"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "sda",
+          "tipo": "Competencia interpersonal",
+          "grado": "Básico"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "competencias": [
+        {
+          "descripcion": "dsa",
+          "tipo": "Competencia técnica",
+          "grado": "Básico"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+.container {
+    padding: 20px;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .titleContainer {
+    background-color: #21498e; /* Color del cuadro del título */
+    color: white;
+    padding: 20px; /* Padding para hacer el cuadro más grande */
+    width: 80%; /* Ancho del cuadro al 80% */
+    max-width: 800px; /* Ancho máximo */
+    text-align: center; /* Centra el texto */
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .titleText {
+    margin: 0; /* Elimina el margen del h1 para centrarlo mejor */
+    font-size: 1.5em; /* Tamaño del texto del título */
+  }
+  
+  .formContainer {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 900px;
+    width: 100%; /* Ancho completo */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Centra el contenedor */
+  }
+  
+  .competenciasHeader {
+    background-color: #b5d0ff; /* Color del cuadro para competencias */
+    color: black;
+    padding: 20px; /* Padding para hacer el cuadro más grande */
+    width: calc(100% - 40px); /* Resta el padding del contenedor */
+    margin: 0 auto 20px; /* Centra el cuadro y da margen abajo */
+    text-align: center; /* Centra el texto */
+    border-radius: 8px;
+  }
+  
+  .competenciasText {
+    margin: 0; /* Elimina el margen del h2 para centrarlo mejor */
+    font-size: 1.2em; /* Tamaño del texto del encabezado */
+  }
+  
+  .competenciaSection {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .actividadSection {
+    flex: 1 1 0; /* Permite que cada sección ocupe espacio flexible */
+    min-width: 200px; /* Evita que se vuelvan demasiado estrechos */
+  }
+  
+  .competenciaSection label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .competenciaSection textarea,
+  .competenciaSection input,
+  .competenciaSection select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #eae7e7;
+    box-sizing: border-box;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  
+  .addButton {
+    background-color: #9BCB3C;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .removeButton {
+    background-color: #C74D4D;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .buttonContainer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .nextButton {
+    background-color: #21498e; /* Color del botón siguiente */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  .invalidField {
+    border: 2px solid red; /* Borde rojo para campos inválidos */
+  }
+  
+  

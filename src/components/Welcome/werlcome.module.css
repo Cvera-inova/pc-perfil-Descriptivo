@@ -1,0 +1,142 @@
+/* styles/welcome.module.css */
+.welcomeModule {
+    background: linear-gradient(to right, #21498E, #5A8EBC);
+    color: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin: 20px; 
+    animation: fadeIn 1s ease-in-out; 
+  }
+  
+  .blurOverlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 0; /* Asegurarse de que el fondo esté detrás */
+    animation: fadeOut 2s forwards; /* Aplica la animación de desvanecimiento */
+  }
+  
+  .welcomeHeader {
+    position: relative;
+    z-index: 1; /* Asegurarse de que el texto esté en frente del fondo */
+  }
+  
+  .animatedText {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    animation: textAnimation 3s infinite; /* Animación de letras */
+  }
+  
+  .welcomeSubtitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+  }
+  
+  .moduleDescription h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    animation: slideIn 1s ease-in-out;
+  }
+  
+  .moduleDescription p {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 0 20px; 
+  }
+  
+  .featuresContainer {
+    margin-top: 30px;
+    text-align: left;
+    animation: slideIn 1s ease-in-out; 
+  }
+  
+  .featuresList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .featuresList li {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    transition: transform 0.3s; 
+  }
+  
+  .featuresList li:hover {
+    transform: scale(1.05); /* Efecto de escalado en la lista */
+  }
+  
+  .buttonContainer {
+    margin-top: 20px;
+  }
+  
+  .startButton {
+    background-color: #FFC107;
+    color: #21498E;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .startButton:hover {
+    background-color: #FFB300;
+    transform: scale(1.1); /* Efecto de escalado al pasar el mouse */
+  }
+  
+  /* Animaciones */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      backdrop-filter: blur(10px);
+    }
+    to {
+      opacity: 0;
+      backdrop-filter: blur(0);
+    }
+  }
+  
+  @keyframes textAnimation {
+    0%, 100% {
+      transform: translateX(-10px);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
