@@ -6,7 +6,7 @@ export const ActividadesService = {
   // Actualizar solo la sección 'datos' de un perfil existente
   actualizarActividad: async (id, datos) => {
     const response = await fetch(`${API_URL}/${id}`, {
-      method: 'PATCH', // Usamos PATCH para actualizaciones parciales
+      method: 'PUT', // Usamos PATCH para actualizaciones parciales
       headers: {
         'Content-Type': 'application/json',
         'Authorization': '7zXnBjF5PBl7EzG/WhATQw==',
