@@ -47,7 +47,7 @@ const LargeTable = ({id_generado}) => {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {/* Texto centrado */}
-              <span style={{ flex: 1, textAlign: 'center', fontWeight: 'bold' }}>
+              <span style={{ flex: 1, textAlign: 'center', fontWeight: 'bold', fontSize: '1.5em' }}>
                 Datos de Identificación del Cargo
               </span>
               {/* Botón */}
@@ -136,7 +136,7 @@ const LargeTable = ({id_generado}) => {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {/* Texto centrado */}
-              <span style={{ flex: 1, textAlign: 'center', fontWeight: 'bold' }}>
+              <span style={{ flex: 1, textAlign: 'center', fontWeight: 'bold', fontSize: '1.5em' }}>
                 Actividades
               </span>
               {/* Botón */}
