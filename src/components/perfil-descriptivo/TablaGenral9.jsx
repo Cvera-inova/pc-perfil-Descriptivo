@@ -1,11 +1,10 @@
-import { fetchVersionById } from '@src/services/examenesyValoracionesMedicas.dao';
+import { fetchVersionById } from '@src/services/examenesyValoracionesMedicas';
 import React, { useEffect, useState } from 'react';
 import EditProfileButton from '../buttons/edit-profile-button';
 
 const ExamenesValoracionesMedicasTable = ({id_generado}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [test, setTest]=useState([])
 
   useEffect(() => {
     const getData = async () => {
@@ -13,9 +12,7 @@ const ExamenesValoracionesMedicasTable = ({id_generado}) => {
         const result = await fetchVersionById(id_generado); // Consumir el servicio con ID 1
         console.log('Datos obtenidos:', result);
         if (result && result.versiones && result.versiones.length > 0) {
-          console.log('setData value',result.versiones[0].examenes[0].examenes)
-          setData(result.versiones[0].examenes[0].examenes);
-          setTest(result.versiones[0].examenes[0].examenes)
+          setData(result.versiones[0].examenes);
         } else {
           setData([]);
         }
@@ -67,7 +64,7 @@ const ExamenesValoracionesMedicasTable = ({id_generado}) => {
           </tr>
         </thead>
         <tbody>
-          {test.map((examen) => (
+          {data.map((examen) => (
             <tr key={examen.tipo}>
               <td style={{ backgroundColor: '#21498E', color: 'white', padding: '10px', border: '1px solid black' }}>
                 {examen.tipo}
@@ -78,8 +75,8 @@ const ExamenesValoracionesMedicasTable = ({id_generado}) => {
                     examen.examenes.map((detalle, index) => (
                       <li key={index} style={{ borderBottom: '1px solid black', padding: '5px 0' }}>{detalle}</li>
                     ))
-                  ) : examen.opcionSeleccionada && examen.opcionSeleccionada.length > 0 ? (
-                    examen.opcionSeleccionada.map((opcion, index) => (
+                  ) : examen.opciones && examen.opciones.length > 0 ? (
+                    examen.opciones.map((opcion, index) => (
                       <li key={index} style={{ borderBottom: '1px solid black', padding: '5px 0' }}>{opcion}</li>
                     ))
                   ) : (

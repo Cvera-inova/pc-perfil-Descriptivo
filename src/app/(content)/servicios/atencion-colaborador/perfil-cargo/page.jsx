@@ -8,7 +8,7 @@ import React from "react";
 const business = () => {
   return (
    
-      <PerfilDescriptivo num={0}/>
+      <PerfilDescriptivo/>
  
   );
 };

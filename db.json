@@ -1,0 +1,24 @@
+{
+  "1_datos_identificacion_cargo": {
+    "nombre_cargo": "Security Engineer",
+    "departamento": "Perez",
+    "cargo": "Desarrollador"
+  },
+  "2_mision_cargo": {
+    "mision": "Proveer servicios de consultoría especializada en seguridad informática, garantizar la integridad, confidencialidad y disponibilidad de la información y de los recursos tecnológicos contratados y participar en la preventa soluciones de seguridad."
+  },
+  "3_Actividades": [
+    {
+      "id": "1",
+      "activity_name": "Desarrollar y mantener la infraestructura de seguridad de la información",
+      "indicador_kpi": "Porcentaje de cumplimiento de los controles de seguridad de la información",
+      "formula_medicion": "#informes de vulnerabilidades generados al mes / #de clientes asignados en el mes*100",
+      "frecuencia_medicion": "Mensual",
+      "total": "28",
+      "es_escencial": true
+    }
+  ],
+  "4_responsabilidad": "4_responsabilidad",
+  "5_relacionamiento": "clientes internos o externos",
+  "6_encaso_de_ausencia": "6_encaso_de_ausencia",
+}
