@@ -152,11 +152,11 @@ export default function PerfilDescriptivoExamenes() {
         },
         {
           tipo: 'reintegro',
-          opcionSeleccionada: reintegro,
+          opcionSeleccionada: [reintegro],
         },
         {
           tipo: 'especiales',
-          opcionSeleccionada: especiales,
+          opcionSeleccionada: [especiales],
         },
         {
           tipo: 'salida',
