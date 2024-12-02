@@ -1,3 +1,7 @@
+.header{
+    font-family: "Calibri";
+  }
+
 .container {
     background-color: #f7f7f7; /* Color de fondo externo */
     padding: 20px;
@@ -32,7 +36,7 @@
     text-align: center;
     font-size: 1.2em;
     color: black;
-    font-family: "Segoe UI";
+    font-family: "Calibri";
     font-size: 22px;
   }
   
@@ -66,7 +70,7 @@
     font-weight: bold;
     color: #333;
     font-size: 22px;
-    font-family: "Segoe UI";
+    font-family: "Calibri";
 
   }
   
@@ -80,6 +84,7 @@
     border-radius: 4px;
     background-color: #eae7e7;
     box-sizing: border-box;
+    font-family: "Calibri";
   }
   
   .formFields textarea {
@@ -96,9 +101,13 @@
     cursor: pointer;
     margin-top: 10px;
     text-align: center;
+    font-family: "Calibri";
   }
   
   .nextButton:hover {
     background-color: #1a3b75;
   }
   
+  .inputError {
+    border-color: #d9534f !important; /* Cambiar el borde a rojo */
+  }
