@@ -152,23 +152,17 @@ export const updateRiesgosDelCargo = async (perfilId, nuevosFactoresDeRiesgo) =>
     }
 
     // 3. Encontrar el objeto `riesgosDelCargo` correspondiente al perfil.
-   // console.log(perfil.riesgosDelCargo[0].id)
-    // const riesgosDelCargoIndex = perfil.riesgosDelCargo[0].findIndex(
-    //   (rc) => rc.id === perfilId
-    // );
-    if (perfil.riesgosDelCargo[0].id === perfilId) {
+    const riesgosDelCargoIndex = perfil.riesgosDelCargo.findIndex(
+      (rc) => rc.id === perfilId
+    );
+    if (riesgosDelCargoIndex === -1) {
       throw new Error(
         'Riesgos del cargo no encontrados para el perfil especificado.'
       );
     }
-    // if (riesgosDelCargoIndex === -1) {
-    //   throw new Error(
-    //     'Riesgos del cargo no encontrados para el perfil especificado.'
-    //   );
-    // }
 
     // 4. Actualizar los `factoresDeRiesgo` con los nuevos datos.
-    perfil.riesgosDelCargo[0].factoresDeRiesgo  =
+    perfil.riesgosDelCargo[riesgosDelCargoIndex].factoresDeRiesgo =
       nuevosFactoresDeRiesgo;
 
     // 5. Enviar la actualización al servidor.

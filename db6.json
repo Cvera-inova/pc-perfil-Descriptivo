@@ -1,0 +1,368 @@
+{
+  "riesgosDelCargo": [
+    {
+      "id": "1",
+      "factoresDeRiesgo": [
+        {
+          "tipo": "Mecánico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Mecánico 1",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico 1",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Mecánico 2",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico 2",
+              "probabilidad": "M",
+              "consecuencia": "D",
+              "nivelDeRiesgo": "TOL"
+            },
+            {
+              "peligroIdentificado": "Peligro Mecánico 3",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico 3",
+              "probabilidad": "A",
+              "consecuencia": "ED",
+              "nivelDeRiesgo": "MOD"
+            }
+          ]
+        },
+        {
+          "tipo": "Químico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Químico 1",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro químico 1",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Químico 2",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro químico 2",
+              "probabilidad": "M",
+              "consecuencia": "D",
+              "nivelDeRiesgo": "TOL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "factoresDeRiesgo": [
+        {
+          "tipo": "Eléctrico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Eléctrico 1",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro eléctrico 1",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Eléctrico 2",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro eléctrico 2",
+              "probabilidad": "M",
+              "consecuencia": "D",
+              "nivelDeRiesgo": "TOL"
+            },
+            {
+              "peligroIdentificado": "Peligro Eléctrico 3",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro eléctrico 3",
+              "probabilidad": "A",
+              "consecuencia": "ED",
+              "nivelDeRiesgo": "MOD"
+            }
+          ]
+        },
+        {
+          "tipo": "Mecánico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Mecánico 4",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico 4",
+              "probabilidad": "C",
+              "consecuencia": "MD",
+              "nivelDeRiesgo": "ALTO"
+            },
+            {
+              "peligroIdentificado": "Peligro Mecánico 5",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico 5",
+              "probabilidad": "B",
+              "consecuencia": "D",
+              "nivelDeRiesgo": "TV"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "factoresDeRiesgo": [
+        {
+          "tipo": "Biológico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Biológico 1",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro biológico 1",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Biológico 2",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro biológico 2",
+              "probabilidad": "M",
+              "consecuencia": "D",
+              "nivelDeRiesgo": "TOL"
+            }
+          ]
+        },
+        {
+          "tipo": "Ergonómico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Ergonómico 1",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro ergonómico 1",
+              "probabilidad": "A",
+              "consecuencia": "ED",
+              "nivelDeRiesgo": "MOD"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "factoresDeRiesgo": [
+        {
+          "tipo": "Mecánico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Mecánico 1",
+              "descripcion": "esta bien",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Mecánico 2",
+              "descripcion": "a",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Mecánico 3",
+              "descripcion": "a",
+              "probabilidad": "M",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            }
+          ]
+        },
+        {
+          "tipo": "Químico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Químico 1",
+              "descripcion": "a",
+              "probabilidad": "M",
+              "consecuencia": "ED",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Químico 2",
+              "descripcion": "s",
+              "probabilidad": "M",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            }
+          ]
+        },
+        {
+          "tipo": "Eléctrico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Eléctrico 1",
+              "descripcion": "s",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Eléctrico 2",
+              "descripcion": "s",
+              "probabilidad": "M",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Eléctrico 3",
+              "descripcion": "s",
+              "probabilidad": "A",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1730583339327",
+      "factoresDeRiesgo": [
+        {
+          "tipo": "Mecánico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Mecánico 1",
+              "descripcion": "dsa",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Mecánico 2",
+              "descripcion": "dsa",
+              "probabilidad": "M",
+              "consecuencia": "D",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Mecánico 3",
+              "descripcion": "das",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            }
+          ]
+        },
+        {
+          "tipo": "Químico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Químico 1",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro químico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Químico 2",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro químico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            }
+          ]
+        },
+        {
+          "tipo": "Eléctrico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Eléctrico 1",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro eléctrico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Eléctrico 2",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro eléctrico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Eléctrico 3",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro eléctrico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1730583531118",
+      "factoresDeRiesgo": [
+        {
+          "tipo": "Mecánico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Jair Sanchez es el mayor peligro",
+              "descripcion": "crack",
+              "probabilidad": "M",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Mecánico 2",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Mecánico 3",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro mecánico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            }
+          ]
+        },
+        {
+          "tipo": "Químico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Químico 1",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro químico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Químico 2",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro químico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            }
+          ]
+        },
+        {
+          "tipo": "Eléctrico",
+          "riesgos": [
+            {
+              "peligroIdentificado": "Peligro Eléctrico 1",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro eléctrico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TV"
+            },
+            {
+              "peligroIdentificado": "Peligro Eléctrico 2",
+              "descripcion": "Describa la situación de riesgo relacionada con el peligro eléctrico",
+              "probabilidad": "B",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "MOD"
+            },
+            {
+              "peligroIdentificado": "hola vv",
+              "descripcion": "noooo",
+              "probabilidad": "A",
+              "consecuencia": "LD",
+              "nivelDeRiesgo": "TOL"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

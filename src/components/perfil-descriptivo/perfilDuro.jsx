@@ -117,7 +117,7 @@ export default function PerfilDuro() {
 
       const perfilesDetalle = perfilExistente.perfiles_detalle || [];
 
-      let perfilDetalle = perfilesDetalle.find((p) => p.id === `perfil_${id_new}`);
+      let perfilDetalle = perfilesDetalle.find((p) => p.id === id_new);
 
       const combinedData = {
         formacion: [
