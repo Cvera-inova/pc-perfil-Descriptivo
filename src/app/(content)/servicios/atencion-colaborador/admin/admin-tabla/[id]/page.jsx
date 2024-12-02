@@ -29,6 +29,7 @@ const Business = () => {
 
       <div style={{ position: 'relative', marginBottom: '0px' }}>
         <CompetenciasTable id_generado={id}/>
+        
      
       </div>
 
@@ -47,7 +48,7 @@ const Business = () => {
       
       </div>
 
-      <div style={{ position: 'relative', marginBottom: '0px' }}>
+      <div style={{ position: 'relative', marginBottom: '100px' }}>
         <ExamenesValoracionesMedicasTable id_generado={id}/>
         
       </div>

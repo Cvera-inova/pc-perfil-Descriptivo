@@ -83,15 +83,47 @@ const UnifiedTable = ({id_generado}) => {
   if (!perfilDuro) return <div>No se encontró el perfil detallado.</div>;
 
   return (
-    <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {/* Sección de Perfil Duro */}
-      <div style={{ backgroundColor: '#EEE', width: '80%', textAlign: 'center', borderRadius: '8px', marginBottom: '10px' }}>
-        <h2 style={{ color: '#21498E', margin: 0, padding: '10px' }}>Perfil Duro</h2>
+      <div style={{ backgroundColor: '#EEE', width: '80%', textAlign: 'center', borderRadius: '8px', marginBottom: '0px' }}>
       </div>
       {perfilDuro?.formacion && perfilDuro?.formacion?.length > 0 ? (
         <div style={{ width: '80%', overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '20px' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '0px' }}>
             <thead>
+            <tr>
+              <th
+                colSpan="14"
+                style={{
+                  backgroundColor: "#EEE",
+                  padding: "10px",
+                  color: "#21498E",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* Texto centrado */}
+                  <span
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1.5em",
+                    }}
+                  >
+                    Perfil Duro
+                  </span>
+                  {/* Botón */}
+                  <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                </div>
+              </th>
+            </tr>
               <tr>
                 <th style={{ backgroundColor: '#21498E', color: 'white', padding: '10px', border: '1px solid black' }}>Formación</th>
                 <th style={{ backgroundColor: '#21498E', color: 'white', padding: '10px', border: '1px solid black' }}>Área de Especialidad</th>
@@ -114,14 +146,45 @@ const UnifiedTable = ({id_generado}) => {
       )}
 
       {/* Sección de Otros Requerimientos */}
-      <div style={{ backgroundColor: '#EEE', width: '80%', textAlign: 'center', borderRadius: '8px', marginBottom: '10px' }}>
-        <h2 style={{ color: '#21498E', margin: 0, padding: '10px' }}>Otros requerimientos del cargo</h2>
-        <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+      <div style={{ backgroundColor: '#EEE', width: '80%', textAlign: 'center', borderRadius: '8px', marginBottom: '0px' }}>
       </div>
       {perfilDuro ? (
       <div style={{ width: '80%', overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '20px' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '0px' }}>
           <tbody>
+          <tr>
+              <th
+                colSpan="14"
+                style={{
+                  backgroundColor: "#EEE",
+                  padding: "10px",
+                  color: "#21498E",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* Texto centrado */}
+                  <span
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1.5em",
+                    }}
+                  >
+                    Otros Requerimientos del cargo
+                  </span>
+                  {/* Botón */}
+                  <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                </div>
+              </th>
+            </tr>
             {/* Disponibilidad de viajar */}
             <tr>
               <td style={{ backgroundColor: '#21498E', color: 'white', padding: '10px', border: '1px solid black', width: '30%' }}>
@@ -163,14 +226,44 @@ const UnifiedTable = ({id_generado}) => {
         <div>No hay información disponible.</div>
       )}
 
-      {/* Sección de Condiciones del Cargo */}
-      <div style={{ width: '100%', textAlign: 'center', marginBottom: '10px' }}>
-        <h2 style={{ color: '#21498E', margin: 0, padding: '10px' }}>Condiciones del cargo</h2>
-      </div>
+     
       {perfilDuro ? (
         <div style={{ width: '80%', overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <tbody>
+            <tr>
+              <th
+                colSpan="14"
+                style={{
+                  backgroundColor: "#EEE",
+                  padding: "10px",
+                  color: "#21498E",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* Texto centrado */}
+                  <span
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1.5em",
+                    }}
+                  >
+                    Condiciones Del Cargo
+                  </span>
+                  {/* Botón */}
+                  <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                </div>
+              </th>
+            </tr>
               {/* Exigencias */}
               <tr>
                 <td style={{ backgroundColor: '#21498E', color: 'white', padding: '10px', border: '1px solid black', width: '30%' }}>

@@ -34,7 +34,7 @@ const CompetenciasTable = ({id_generado}) => {
   return (
     <div
       style={{
-        padding: "20px",
+        padding: "0px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

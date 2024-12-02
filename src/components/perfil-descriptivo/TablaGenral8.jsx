@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import EditProfileButton from '../buttons/edit-profile-button';
 
 const EquiposProteccionIndividual = ({id_generado}) => {
   // Estado para manejar el estado de los checkboxes
@@ -12,14 +13,45 @@ const EquiposProteccionIndividual = ({id_generado}) => {
   };
 
   return (
-    <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ backgroundColor: '#EEE', width: '80%', textAlign: 'center', borderRadius: '8px', marginBottom: '10px' }}>
-        <h2 style={{ color: '#21498E', margin: 0, padding: '10px' }}>
-          Equipos de protección individual para el puesto de trabajo
-        </h2>
-      </div>
+    <div style={{ padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    
       <table style={{ width: '80%', borderCollapse: 'collapse' }}>
         <tbody>
+        <tr>
+              <th
+                colSpan="14"
+                style={{
+                  backgroundColor: "#EEE",
+                  padding: "10px",
+                  color: "#21498E",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* Texto centrado */}
+                  <span
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1.5em",
+                    }}
+                  >
+                              Equipos de protección individual para el puesto de trabajo
+
+                  </span>
+                  {/* Botón */}
+                  <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                </div>
+              </th>
+            </tr>
+ 
           <tr>
             <td style={{ padding: '10px', textAlign: 'center', border: '1px solid #ddd', width: '12.5%' }}>
               <input

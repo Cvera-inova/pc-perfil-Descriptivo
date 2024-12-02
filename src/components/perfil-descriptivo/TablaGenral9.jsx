@@ -1,5 +1,6 @@
 import { fetchVersionById } from '@src/services/examenesyValoracionesMedicas.dao';
 import React, { useEffect, useState } from 'react';
+import EditProfileButton from '../buttons/edit-profile-button';
 
 const ExamenesValoracionesMedicasTable = ({id_generado}) => {
   const [data, setData] = useState([]);
@@ -36,17 +37,50 @@ const ExamenesValoracionesMedicasTable = ({id_generado}) => {
   }
 
   return (
-    <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ backgroundColor: '#EEE', width: '80%', textAlign: 'center', borderRadius: '8px', marginBottom: '10px' }}>
-        <h2 style={{ color: '#21498E', margin: 0, padding: '10px' }}>Exámenes y valoraciones médicas ocupacionales</h2>
-      </div>
+    <div style={{ padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+     
       <table style={{ width: '80%', borderCollapse: 'collapse' }}>
         <thead>
+        <tr>
+              <th
+                colSpan="14"
+                style={{
+                  backgroundColor: "#EEE",
+                  padding: "10px",
+                  color: "#21498E",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* Texto centrado */}
+                  <span
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1.5em",
+                    }}
+                  >
+                    Exámenes y valoraciones médicas ocupacionales
+                  </span>
+                  {/* Botón */}
+                  <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                </div>
+              </th>
+            </tr>
+ 
           <tr>
             <th style={{ backgroundColor: '#21498E', color: 'white', padding: '10px', border: '1px solid black' }}>Tipo de Examen/Valoración</th>
             <th style={{ backgroundColor: '#21498E', color: 'white', padding: '10px', border: '1px solid black' }}>Detalles</th>
           </tr>
         </thead>
+        
         <tbody>
           {test.map((examen) => (
             <tr key={examen.tipo}>
