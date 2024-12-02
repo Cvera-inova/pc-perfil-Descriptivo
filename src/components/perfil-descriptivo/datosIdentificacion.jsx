@@ -169,16 +169,29 @@ const handleChange = (e) => {
           alert('Error al obtener el perfil. Inténtalo nuevamente.');
           return;
         }
-        console.log('here ',perfil)
         if (!perfil.datos_e_identificacion_del_cargo || !Array.isArray(perfil.datos_e_identificacion_del_cargo)) {
           perfil.datos_e_identificacion_del_cargo = [];
         }
-  
-        // Añadir la nueva versión al arreglo 'versiones'
-        perfil.datos_e_identificacion_del_cargo[0].push(nuevaVersion);
-        console.log('Nuevo perfil: ',perfil)
+        const newData={
+          datos_e_identificacion_del_cargo: [
+            {
+              id: num, // Asegúrate de usar el mismo ID o uno adecuado
+              ...formData,
+            },
+          ],
+        }
+        console.log(newData.datos_e_identificacion_del_cargo)
+        perfil.datos_e_identificacion_del_cargo=[newData.datos_e_identificacion_del_cargo[0]];
+        //console.log(perfil)
         // Enviar la actualización al backend
-        //const result = await updateVersion(id_new, perfil);
+        const result = await updateVersion(num, perfil);
+        if (result) {
+          console.log('Nuevo perfil: ',result)
+          // Redirige a otra ruta después de una creación exitosa
+          window.location.href = `/servicios/atencion-colaborador/admin/admin-tabla/${num}`; // Cambia esta ruta según sea necesario
+        } else {
+          alert('No se pudo crear la versión. Por favor, intenta nuevamente.');
+        }
       }
     } catch (error) {
       setAlertMessage('Error al enviar los datos.');
@@ -249,7 +262,7 @@ const handleChange = (e) => {
             <textarea name="mision_del_cargo" placeholder="Escriba la misión del cargo" required value={formData.mision_del_cargo} onChange={handleChange}></textarea>
 
             <button className={styles.nextButton} type="submit">
-              Siguiente
+              Actualizar
             </button>
           </div>
         </form>
@@ -258,7 +271,7 @@ const handleChange = (e) => {
       {showAlert && <AlertaJair message={alertMessage} onClose={handleCloseAlert} />}
       {showConfirmPopup && (
         <ConfirmacionPopup
-          mensaje="¿Está seguro de enviar los datos? Tenga en cuenta que avanzará al siguiente nivel."
+          mensaje="¿Está seguro de enviar los datos? Tenga en cuenta que los resultados serán guardados."
           onConfirm={handleConfirm}
           onCancel={handleCancel}
         />
