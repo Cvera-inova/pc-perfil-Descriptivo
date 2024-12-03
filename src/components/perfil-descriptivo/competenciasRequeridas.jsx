@@ -3,7 +3,7 @@ import { obtenerPerfilPorId, actualizarPerfil } from '@src/services/competencias
 import styles from './CompetenciasRequeridas.module.css';
 import ConfirmacionPopup from '../popUp/ConfirmacionPopup';
 import {obtenerSiguienteIdPerfil} from '../../services/idPerfil.dao'
-import { createVersion, fetchVersionById, updateVersion } from '@src/services/examenesyValoracionesMedicas.dao';
+import { fetchVersionById } from '@src/services/examenesyValoracionesMedicas.dao';
 
 export default function CompetenciasRequeridas({ num }) {
   const [competencias, setCompetencias] = useState([
@@ -120,7 +120,7 @@ export default function CompetenciasRequeridas({ num }) {
           setError('');
 
           // Redirigir a otra página
-          window.location.href = 'http://localhost:3000/servicios/atencion-colaborador/perfilDuro';
+          window.location.href = '/servicios/atencion-colaborador/perfilDuro';
         } else {
           console.error('Error al enviar competencias:', perfilActualizado);
           alert('Ocurrió un error al enviar las competencias.');

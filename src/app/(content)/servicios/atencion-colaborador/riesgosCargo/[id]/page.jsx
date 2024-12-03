@@ -2,13 +2,13 @@
  
 import RiesgosDelCargo from "@src/components/perfil-descriptivo/RiesgosDelCargo";
 import React from "react";
- 
- 
+import { useParams } from "next/navigation"; 
  
 const business = () => {
+  const {id} =useParams()
   return (
    
-      <RiesgosDelCargo num={0}/>
+      <RiesgosDelCargo num={id}/>
  
   );
 };

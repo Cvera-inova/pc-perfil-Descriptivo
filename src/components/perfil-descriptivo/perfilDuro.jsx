@@ -1,12 +1,13 @@
 // src/pages/PerfilDuro.js
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ConfirmacionPopup from '../popUp/ConfirmacionPopup'; // Asegúrate de que este componente exista y esté correctamente importado
 import { actualizarPerfil, obtenerPerfilPorId } from '@src/services/perfilDuro.dao';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import {obtenerSiguienteIdPerfil} from '../../services/idPerfil.dao'
+import { fetchVersionById } from '@src/services/examenesyValoracionesMedicas.dao';
 
-export default function PerfilDuro() {
+export default function PerfilDuro({num}) {
   const [formData, setFormData] = useState({
     bachiller: '',
     tiempoBachiller: '',
@@ -94,6 +95,45 @@ export default function PerfilDuro() {
   
   const [showPopup, setShowPopup] = useState(false);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("Component initialized with num:", num);
+      if (num !== 0) {
+        try {
+          const perfil = await fetchVersionById(num); // Replace `id_new` with `num`
+          if (!perfil) {
+            alert("Error al obtener el perfil. Inténtalo nuevamente.");
+            setShowPopup(false);
+            return;
+          }
+          console.log(perfil.perfiles_detalle[0].perfilDuro)
+          setPosgrados(perfil.perfiles_detalle[0].perfilDuro.formacion[0])
+          setTecnologias(perfil.perfiles_detalle[0].perfilDuro.formacion[1])
+          setFormData({...formData,
+            "bachiller":perfil.perfiles_detalle[0].perfilDuro.formacion[2].bachiller, 
+            "tiempoBachiller":perfil.perfiles_detalle[0].perfilDuro.formacion[2].tiempoBachiller,
+            "disponibilidadViajar":perfil.perfiles_detalle[0].perfilDuro.disponibilidadViajar,
+            "lugaresViajar":perfil.perfiles_detalle[0].perfilDuro.lugaresViajar,
+            "herramientas":perfil.perfiles_detalle[0].perfilDuro.herramientas,
+            "horarioAlmuerzo":perfil.perfiles_detalle[0].perfilDuro.horarioAlmuerzo,
+            "horarioEntrada":perfil.perfiles_detalle[0].perfilDuro.horarioEntrada,
+            "horarioSalida":perfil.perfiles_detalle[0].perfilDuro.horarioSalida,
+            "exigencias":perfil.perfiles_detalle[0].perfilDuro.exigencias
+          })
+          setCertificaciones(perfil.perfiles_detalle[0].perfilDuro.formacion[3])
+          setLicencias(perfil.perfiles_detalle[0].perfilDuro.formacion[4])
+          setIdiomas(perfil.perfiles_detalle[0].perfilDuro.formacion[5])
+          setExperiencias(perfil.perfiles_detalle[0].perfilDuro.formacion[6])
+          setConocimientos(perfil.perfiles_detalle[0].perfilDuro.conocimientos)
+        } catch (error) {
+          console.error("Error fetching the perfil:", error);
+          alert("Error al obtener el perfil. Inténtalo nuevamente.");
+        }
+      }
+    };
+    fetchData();
+}, [num]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -106,19 +146,19 @@ export default function PerfilDuro() {
 
   const manejarConfirmacion = async () => {
     setShowPopup(false);
-
+  
     try {
-      const id_new = (await obtenerSiguienteIdPerfil())-1
-      const perfilExistente = await obtenerPerfilPorId(id_new);
-
+      const isNuevoPerfil = num === 0;
+      const id = isNuevoPerfil ? (await obtenerSiguienteIdPerfil()) - 1 : num;
+      const perfilExistente = await obtenerPerfilPorId(id);
+  
       if (!perfilExistente) {
         throw new Error('Perfil no encontrado');
       }
-
+  
       const perfilesDetalle = perfilExistente.perfiles_detalle || [];
-
-      let perfilDetalle = perfilesDetalle.find((p) => p.id === `perfil_${id_new}`);
-
+      let perfilDetalle = perfilesDetalle.find((p) => p.id === `perfil_${id}`);
+  
       const combinedData = {
         formacion: [
           posgrados,
@@ -141,30 +181,32 @@ export default function PerfilDuro() {
         horarioSalida: formData.horarioSalida,
         horarioAlmuerzo: formData.horarioAlmuerzo,
       };
-      
-
+  
       if (perfilDetalle) {
         perfilDetalle.perfilDuro = combinedData;
       } else {
         perfilDetalle = {
-          id: id_new,
+          id: id,
           perfilDuro: combinedData,
           otrosRequerimientos: [],
           condicionesCargo: [],
         };
         perfilesDetalle.push(perfilDetalle);
       }
-
+  
       const perfilActualizado = {
         ...perfilExistente,
         perfiles_detalle: perfilesDetalle,
       };
-
-      const resultado = await actualizarPerfil(id_new, perfilActualizado);
-
+  
+      const resultado = await actualizarPerfil(id, perfilActualizado);
+  
       if (resultado) {
         alert('Perfil Duro actualizado exitosamente.');
-        window.location.href = '/servicios/atencion-colaborador/riesgosCargo'; // Redirigir a otra página
+        const redirectUrl = isNuevoPerfil
+          ? '/servicios/atencion-colaborador/riesgosCargo'
+          : `/servicios/atencion-colaborador/admin/admin-tabla/${num}`;
+        window.location.href = redirectUrl;
       } else {
         throw new Error('No se pudo actualizar el perfil.');
       }
@@ -173,6 +215,7 @@ export default function PerfilDuro() {
       alert(`Ocurrió un error al actualizar el Perfil Duro: ${error.message}`);
     }
   };
+  
 
   const manejarCancelacion = () => {
     setShowPopup(false);
@@ -200,7 +243,7 @@ export default function PerfilDuro() {
                   <input
                     type="text"
                     name="posgrado"
-                    value={posgrados[index][posgrado]}
+                    value={posgrados[index].posgrado}
                     onChange={(e) => handleItemChange(e.target.value, index, 'posgrado', posgrados, setPosgrados)}
                     placeholder="Escriba su posgrado"
                     required
@@ -210,7 +253,7 @@ export default function PerfilDuro() {
                   <label>Tiempo:</label>
                   <select
                     name="tiempoPosgrado"
-                    value={posgrados[index][posgrado]} 
+                    value={posgrados[index].tiempoPosgrado} 
                     onChange={(e) => handleItemChange(e.target.value, index, 'tiempoPosgrado', posgrados, setPosgrados)}
                     required
                   >
@@ -245,7 +288,7 @@ export default function PerfilDuro() {
                   <input
                     type="text"
                     name="tecnologia"
-                    value={tecnologias[index][tecnologia]}
+                    value={tecnologias[index].tecnologia}
                     onChange={(e) => handleItemChange(e.target.value, index, 'tecnologia', tecnologias, setTecnologias)}
                     placeholder="Escriba su tecnología"
                     required
@@ -255,7 +298,7 @@ export default function PerfilDuro() {
                   <label>Tiempo:</label>
                   <select
                     name="tiempoTecnologia"
-                    value={tecnologias[index][tecnologia]}
+                    value={tecnologias[index].tiempoTecnologia}
                     onChange={(e) => handleItemChange(e.target.value, index, 'tiempoTecnologia', tecnologias, setTecnologias)}
                     required
                   >
@@ -323,7 +366,7 @@ export default function PerfilDuro() {
                     <input
                       type="text"
                       name="certificacion"
-                      value={certificaciones[index][certificacion]}
+                      value={certificaciones[index].certificacion}
                       onChange={(e) => handleItemChange(e.target.value, index, 'certificacion', certificaciones, setCertificaciones)}
                       placeholder="Escriba su certificación"
                       required
@@ -333,7 +376,7 @@ export default function PerfilDuro() {
                     <label>Tiempo:</label>
                     <select
                       name="tiempoCertificacion"
-                      value={certificaciones[index][certificacion]}
+                      value={certificaciones[index].tiempoCertificacion}
                       onChange={(e) => handleItemChange(e.target.value, index, 'tiempoCertificacion', certificaciones, setCertificaciones)}
                       required
                     >
@@ -368,7 +411,7 @@ export default function PerfilDuro() {
                     <input
                       type="text"
                       name="licencia"
-                      value={licencias[index][licencia]}
+                      value={licencias[index].licencia}
                       onChange={(e) => handleItemChange(e.target.value, index, 'licencia', licencias, setLicencias)}
                       placeholder="Escriba sus licencias"
                       required
@@ -378,7 +421,7 @@ export default function PerfilDuro() {
                     <label>Tiempo:</label>
                     <select
                       name="tiempoLicencia"
-                      value={licencias[index][licencia]}
+                      value={licencias[index].tiempoLicencia}
                       onChange={(e) => handleItemChange(e.target.value, index, 'tiempoLicencia', licencias, setLicencias)}
                       required
                     >
@@ -414,7 +457,7 @@ export default function PerfilDuro() {
                     <input
                       type="text"
                       name="idioma"
-                      value={idiomas[index][idioma]}
+                      value={idiomas[index].idioma}
                       onChange={(e) => handleItemChange(e.target.value, index, 'idioma', idiomas, setIdiomas)}
                       placeholder="Escriba los idiomas"
                       required
@@ -424,7 +467,7 @@ export default function PerfilDuro() {
                     <label>Tiempo:</label>
                     <select
                       name="tiempoIdioma"
-                      value={idiomas[index][idioma]}
+                      value={idiomas[index].tiempoIdioma}
                       onChange={(e) => handleItemChange(e.target.value, index, 'tiempoIdioma', idiomas, setIdiomas)}
                       required
                     >
@@ -459,7 +502,7 @@ export default function PerfilDuro() {
                     <input
                       type="text"
                       name="experiencia"
-                      value={experiencias[index][experiencia]}
+                      value={experiencias[index].experiencia}
                       onChange={(e) => handleItemChange(e.target.value, index, 'experiencia', experiencias, setExperiencias)}
                       placeholder="Escriba su experiencia"
                       required
@@ -469,7 +512,7 @@ export default function PerfilDuro() {
                     <label>Tiempo:</label>
                     <select
                       name="tiempoExperiencia"
-                      value={experiencias[index][experiencia]}
+                      value={experiencias[index].tiempoExperiencia}
                       onChange={(e) => handleItemChange(e.target.value, index, 'tiempoExperiencia', experiencias, setExperiencias)}
                       required
                     >
@@ -532,7 +575,7 @@ export default function PerfilDuro() {
                   <input
                     type="text"
                     name="conocimiento"
-                    value={conocimientos[index][conocimiento]}
+                    value={conocimientos[index].conocimiento}
                     onChange={(e) => handleItemChange(e.target.value, index, 'conocimiento', conocimientos, setConocimientos)}
                     placeholder="Escriba sus conocimientos"
                     required
@@ -545,7 +588,7 @@ export default function PerfilDuro() {
                   <input
                     type="text"
                     name="descripcionConocimiento"
-                    value={conocimientos[index][conocimiento]}
+                    value={conocimientos[index].descripcionConocimiento}
                     onChange={(e) => handleItemChange(e.target.value, index, 'descripcionConocimiento', conocimientos, setConocimientos)}
                     placeholder="Escriba la descripción"
                     required

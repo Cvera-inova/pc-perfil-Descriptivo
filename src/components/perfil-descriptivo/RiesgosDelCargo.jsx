@@ -1,11 +1,12 @@
 // src/components/perfil-descriptivo/RiesgosDelCargo.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './RiesgosDelCargo.module.css';
 import { updateRiesgosDelCargo } from '@src/services/riesgos.dao'; // Asegúrate de que la ruta sea correcta
 import {obtenerSiguienteIdPerfil} from '../../services/idPerfil.dao'
+import { fetchVersionById } from '@src/services/examenesyValoracionesMedicas.dao';
 
-export default function RiesgosDelCargo() {
+export default function RiesgosDelCargo({num}) {
   const [equiposProteccion, setEquiposProteccion] = useState({
     mascarilla: false,
     gafas: false,
@@ -36,6 +37,37 @@ export default function RiesgosDelCargo() {
       nivelDeRiesgo: '',
     })),
   });
+
+  useEffect(() => {console.log(riesgos)},[riesgos])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("Component initialized with num:", num);
+      if (num !== 0) {
+        try {
+          const perfil = await fetchVersionById(num); // Replace `id_new` with `num`
+          if (!perfil) {
+            alert("Error al obtener el perfil. Inténtalo nuevamente.");
+            setShowPopup(false);
+            return;
+          }
+          console.log(perfil.riesgosDelCargo[0].factoresDeRiesgo)
+          const datosRiesgoMecanico = perfil.riesgosDelCargo[0].factoresDeRiesgo[0].riesgos
+          const datosRiesgoQuimico = perfil.riesgosDelCargo[0].factoresDeRiesgo[1].riesgos
+          const datosRiesgoElectrico = perfil.riesgosDelCargo[0].factoresDeRiesgo[2].riesgos
+          console.log(datosRiesgoMecanico)
+          console.log(datosRiesgoElectrico)
+          console.log(datosRiesgoQuimico)
+          console.log(riesgos)
+          //setRiesgos({...riesgos, [mecanico]:datosRiesgoMecanico})
+        } catch (error) {
+          console.error("Error fetching the perfil:", error);
+          alert("Error al obtener el perfil. Inténtalo nuevamente2.");
+        }
+      }
+    };
+    fetchData();
+}, [num]);
 
   const handleEquipoChange = (equipo) => {
     setEquiposProteccion((prev) => ({

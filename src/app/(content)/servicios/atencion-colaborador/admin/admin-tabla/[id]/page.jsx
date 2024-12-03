@@ -19,38 +19,30 @@ const Business = () => {
     <div style={{ position: 'relative', padding: '0px' }}>
       <div style={{ position: 'relative', marginBottom: '0px' }}>
         <CompleteTable id_generado={id}/>
-     
       </div>
 
       <div style={{ position: 'relative', marginBottom: '0px' }}>
         <CombinedTable id_generado={id}/>
-     
       </div>
 
       <div style={{ position: 'relative', marginBottom: '0px' }}>
         <CompetenciasTable id_generado={id}/>
-        
-     
       </div>
 
       <div style={{ position: 'relative', marginBottom: '0px' }}>
         <UnifiedTable id_generado={id}/>
-       
       </div>
 
       <div style={{ position: 'relative', marginBottom: '0px' }}>
         <RiesgosAsociadosTable id_generado={id}/>
-     
       </div>
 
       <div style={{ position: 'relative', marginBottom: '0px' }}>
         <EquiposProteccionIndividualTable id_generado={id}/>
-      
       </div>
 
       <div style={{ position: 'relative', marginBottom: '100px' }}>
         <ExamenesValoracionesMedicasTable id_generado={id}/>
-        
       </div>
     </div>
   );

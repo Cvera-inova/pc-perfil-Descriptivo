@@ -120,7 +120,7 @@ const UnifiedTable = ({id_generado}) => {
                     Perfil Duro
                   </span>
                   {/* Botón */}
-                  <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                  <EditProfileButton editRoute={`/servicios/atencion-colaborador/perfilDuro/${id_generado}`} />
                 </div>
               </th>
             </tr>
@@ -181,7 +181,7 @@ const UnifiedTable = ({id_generado}) => {
                     Otros Requerimientos del cargo
                   </span>
                   {/* Botón */}
-                  <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                  <EditProfileButton editRoute={`/servicios/atencion-colaborador/perfilDuro/${id_generado}`} />
                 </div>
               </th>
             </tr>
@@ -260,7 +260,7 @@ const UnifiedTable = ({id_generado}) => {
                     Condiciones Del Cargo
                   </span>
                   {/* Botón */}
-                  <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                  <EditProfileButton editRoute={`/servicios/atencion-colaborador/perfilDuro/${id_generado}`} />
                 </div>
               </th>
             </tr>
