@@ -262,7 +262,7 @@ const handleChange = (e) => {
             <textarea name="mision_del_cargo" placeholder="Escriba la misión del cargo" required value={formData.mision_del_cargo} onChange={handleChange}></textarea>
 
             <button className={styles.nextButton} type="submit">
-              Actualizar
+              {num!=0?"Actualizar":"Guardar"}
             </button>
           </div>
         </form>

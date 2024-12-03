@@ -51,7 +51,7 @@ const LargeTable = ({id_generado}) => {
                 Datos de Identificación del Cargo
               </span>
               {/* Botón */}
-              <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+              <EditProfileButton editRoute={`/servicios/atencion-colaborador/perfil-cargo/${id_generado}`} />
             </div>
           </th>
         </tr>
@@ -140,7 +140,7 @@ const LargeTable = ({id_generado}) => {
                 Actividades
               </span>
               {/* Botón */}
-              <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+              <EditProfileButton editRoute={`/servicios/atencion-colaborador/actividades/${id_generado}`} />
             </div>
           </th>
         </tr>

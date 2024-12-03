@@ -1,14 +1,14 @@
 "use client";
  
-import PerfilDescriptivo from "@src/components/perfil-descriptivo/datosIdentificacion";
+import ActividadesDelCargo from "@src/components/perfil-descriptivo/actividadesCargo";
 import React from "react";
 import { useParams } from "next/navigation";
  
 const business = () => {
   const {id} =useParams()
   return (
-    
-      <PerfilDescriptivo num={id} />
+   
+      <ActividadesDelCargo num={id}/>
  
   );
 };

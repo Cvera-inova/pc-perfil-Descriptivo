@@ -8,7 +8,7 @@ import React from "react";
 const business = () => {
   return (
    
-      <ActividadesDelCargo/>
+      <ActividadesDelCargo num={0}/>
  
   );
 };
