@@ -9,7 +9,9 @@ import ConfirmacionPopup from '../popUp/ConfirmacionPopup';
 import {obtenerSiguienteIdPerfil} from '../../services/idPerfil.dao'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSession } from "next-auth/react";
 import { createVersion, fetchVersionById, updateVersion } from '@src/services/examenesyValoracionesMedicas.dao';
+import { getListaDepartamentos } from '@src/services/department.dao';
 
 export default function PerfilDescriptivo( { num }) {
   const [alertMessage, setAlertMessage] = useState('');
@@ -17,6 +19,25 @@ export default function PerfilDescriptivo( { num }) {
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});
+  const { data: session } = useSession();
+  const [departments, setDepartments]=useState([])
+
+  useEffect(() => {
+    console.log(session)
+    if (session) {
+      const fetchDepartments = async () => {
+        try{
+          const responseData = await getListaDepartamentos(session);
+          console.log(responseData)
+          setDepartments(responseData.departments)
+        }
+        catch{
+
+        }
+      }
+      fetchDepartments()
+    }
+  }, [session]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -209,6 +230,11 @@ const handleChange = (e) => {
     setShowAlert(false);
   };
 
+  const handleSelectChange = (event) => {
+    const selectedDepartmentId = event.target.value;
+    setFormData({ ...formData, [event.target.name]: selectedDepartmentId });
+  };
+
   return (
     <div className={styles.container}>
       <ToastContainer />
@@ -237,7 +263,16 @@ const handleChange = (e) => {
             <input name="nombre_del_cargo" type="text" placeholder="Escriba el nombre del cargo" required value={formData.nombre_del_cargo} onChange={handleChange} />
 
             <label>Departamento:</label>
-            <input name="departamento" type="text" placeholder="Escriba el departamento del cargo" required value={formData.departamento} onChange={handleChange} />
+            <select id="department-select" onChange={handleSelectChange} name="departamento">
+              <option value={formData.departamento} disabled selected>
+                Seleccione un departamento
+              </option>
+              {departments?.map((department) => (
+                <option key={department.id} value={department.id}>
+                  {department.department_name}
+                </option>
+              ))}
+            </select>
 
             <label>Reporta a:</label>
             <input name="reporta_a" type="text" placeholder="Escriba a quién reporta el cargo" required value={formData.reporta_a} onChange={handleChange} />

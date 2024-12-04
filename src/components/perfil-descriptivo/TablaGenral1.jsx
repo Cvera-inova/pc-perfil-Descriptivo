@@ -1,9 +1,13 @@
 import { obtenerDatoPorId } from '@src/services/datosCargo.Dao';
 import React, { useEffect, useState } from 'react';
 import EditProfileButton from '../buttons/edit-profile-button';
+import { useSession } from "next-auth/react";
+import { getDepartamentoById } from '@src/services/department.dao';
 
 const LargeTable = ({id_generado}) => {
   const [datoCargo, setDatoCargo] = useState(null); // Estado para almacenar los datos
+  const { data: session } = useSession();
+  const [nombreDepartament, setNombreDepartamento]=useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +21,23 @@ const LargeTable = ({id_generado}) => {
 
     fetchData(); // Llama a la función para obtener datos
   }, []); // Se ejecuta solo una vez al montar el componente
+
+  useEffect(() => {
+    console.log(session)
+    if (session && datoCargo?.datos_e_identificacion_del_cargo[0].departamento) {
+      const id_departamento=datoCargo.datos_e_identificacion_del_cargo[0].departamento
+      const fetchDepartmentById = async () => {
+        try{
+          const responseData = await getDepartamentoById(id_departamento, session);
+          setNombreDepartamento(responseData.department.department_name)
+        }
+        catch{
+
+        }
+      }
+      fetchDepartmentById()
+    }
+  }, [session, datoCargo]);
 
   // Verifica si los datos están disponibles
   if (!datoCargo) {
@@ -80,7 +101,7 @@ const LargeTable = ({id_generado}) => {
               Departamento:
             </td>
             <td style={{ backgroundColor: 'white', color: 'black', padding: '10px', border: '1px solid black' }}>
-              {datosCargo.departamento}
+              {nombreDepartament}
             </td>
           </tr>
           <tr>
