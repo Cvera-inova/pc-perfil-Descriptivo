@@ -1,4 +1,4 @@
-import { fetchVersionById } from "@src/services/examenesyValoracionesMedicas";
+import { fetchVersionById } from "@src/services/examenesyValoracionesMedicas.dao";
 import React, { useEffect, useState } from "react";
 
 function Pruebas() {

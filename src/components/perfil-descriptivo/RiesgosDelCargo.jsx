@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './RiesgosDelCargo.module.css';
 import { updateRiesgosDelCargo } from '@src/services/riesgos.dao'; // Asegúrate de que la ruta sea correcta
 import {obtenerSiguienteIdPerfil} from '../../services/idPerfil.dao'
-import { fetchVersionById } from '@src/services/examenesyValoracionesMedicas.dao';
+import { fetchVersionById, updateVersion } from '@src/services/examenesyValoracionesMedicas.dao';
 
 export default function RiesgosDelCargo({num}) {
   const [equiposProteccion, setEquiposProteccion] = useState({
@@ -42,32 +42,42 @@ export default function RiesgosDelCargo({num}) {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("Component initialized with num:", num);
       if (num !== 0) {
         try {
-          const perfil = await fetchVersionById(num); // Replace `id_new` with `num`
+          const perfil = await fetchVersionById(num);
           if (!perfil) {
-            alert("Error al obtener el perfil. Inténtalo nuevamente.");
-            setShowPopup(false);
+            alert('Error al obtener el perfil. Inténtalo nuevamente.');
             return;
           }
-          console.log(perfil.riesgosDelCargo[0].factoresDeRiesgo)
-          const datosRiesgoMecanico = perfil.riesgosDelCargo[0].factoresDeRiesgo[0].riesgos
-          const datosRiesgoQuimico = perfil.riesgosDelCargo[0].factoresDeRiesgo[1].riesgos
-          const datosRiesgoElectrico = perfil.riesgosDelCargo[0].factoresDeRiesgo[2].riesgos
-          console.log(datosRiesgoMecanico)
-          console.log(datosRiesgoElectrico)
-          console.log(datosRiesgoQuimico)
-          console.log(riesgos)
-          //setRiesgos({...riesgos, [mecanico]:datosRiesgoMecanico})
+
+          const factoresDeRiesgo = perfil.riesgosDelCargo[0]?.factoresDeRiesgo || [];
+
+          const mapRiesgos = (tipo, length) =>
+            Array.from({ length }, (_, index) => {
+              const riesgo = factoresDeRiesgo.find((factor) => factor.tipo === tipo)?.riesgos[index] || {};
+              return {
+                peligroIdentificado: riesgo.peligroIdentificado || '',
+                descripcion: riesgo.descripcion || '',
+                probabilidad: riesgo.probabilidad || '',
+                consecuencia: riesgo.consecuencia || '',
+                nivelDeRiesgo: riesgo.nivelDeRiesgo || '',
+              };
+            });
+
+          setRiesgos({
+            mecanico: mapRiesgos('Mecánico', 3),
+            quimico: mapRiesgos('Químico', 2),
+            electrico: mapRiesgos('Eléctrico', 3),
+          });
         } catch (error) {
-          console.error("Error fetching the perfil:", error);
-          alert("Error al obtener el perfil. Inténtalo nuevamente2.");
+          console.error('Error fetching the perfil:', error);
+          alert('Error al obtener el perfil. Inténtalo nuevamente.');
         }
       }
     };
+
     fetchData();
-}, [num]);
+  }, [num]);
 
   const handleEquipoChange = (equipo) => {
     setEquiposProteccion((prev) => ({
@@ -148,16 +158,35 @@ export default function RiesgosDelCargo({num}) {
     ];
 
     try {
-      const id_new = (await obtenerSiguienteIdPerfil())-1
-      const result = await updateRiesgosDelCargo(id_new, nuevosFactoresDeRiesgo);
-      if (result) {
-        console.log('Riesgos del cargo actualizados exitosamente:', result);
-        // Redirigir a otra página después de enviar los datos
-        window.location.href =
-          'http://localhost:3000/servicios/atencion-colaborador/examenesMedicos';
-      } else {
-        console.error('No se pudo actualizar los riesgos del cargo.');
-        alert('No se pudo actualizar los riesgos del cargo. Por favor, intenta nuevamente.');
+      if (num===0){
+        const id_new = (await obtenerSiguienteIdPerfil())-1
+        const result = await updateRiesgosDelCargo(id_new, nuevosFactoresDeRiesgo);
+        if (result) {
+          console.log('Riesgos del cargo actualizados exitosamente:', result);
+          // Redirigir a otra página después de enviar los datos
+          window.location.href =
+            '/servicios/atencion-colaborador/examenesMedicos';
+        } else {
+          console.error('No se pudo actualizar los riesgos del cargo.');
+          alert('No se pudo actualizar los riesgos del cargo. Por favor, intenta nuevamente.');
+        }
+      }
+      else{
+        const perfil = await fetchVersionById(num);
+        if (!perfil) {
+          return handleError('Error al obtener el perfil. Inténtalo nuevamente.');
+        }
+        perfil.riesgosDelCargo[0].factoresDeRiesgo=(nuevosFactoresDeRiesgo);
+        const result = await updateVersion(num, perfil);
+        if (result) {
+          console.log('Riesgos del cargo actualizados exitosamente:', result);
+          // Redirigir a otra página después de enviar los datos
+          window.location.href =
+            `/servicios/atencion-colaborador/admin/admin-tabla/${num}`;
+        } else {
+          console.error('No se pudo actualizar los riesgos del cargo.');
+          alert('No se pudo actualizar los riesgos del cargo. Por favor, intenta nuevamente.');
+        }
       }
     } catch (error) {
       console.error('Error al actualizar los riesgos del cargo:', error);
@@ -275,6 +304,10 @@ export default function RiesgosDelCargo({num}) {
         {renderRiesgoSection('Factores de Riesgo Mecánico', 'mecanico', 3)}
         {renderRiesgoSection('Factores de Riesgo Químico', 'quimico', 2)}
         {renderRiesgoSection('Factores de Riesgo Eléctrico', 'electrico', 3)}
+
+        <div className={styles.riesgoSection}>
+          <h3>Equipo</h3>
+        </div>
 
         <button className={styles.nextButton} onClick={enviarDatos}>
           Enviar

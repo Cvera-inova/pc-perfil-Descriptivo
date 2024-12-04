@@ -66,7 +66,7 @@ const CompetenciasTable = ({id_generado}) => {
                   Competencias requeridas para el óptimo desenvolvimiento de un cargo
                 </span>
                 {/* Botón */}
-                <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                <EditProfileButton editRoute={`/servicios/atencion-colaborador/competencias/${id_generado}`} />
               </div>
             </th>
           </tr>
