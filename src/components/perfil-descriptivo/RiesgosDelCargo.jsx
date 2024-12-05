@@ -38,7 +38,7 @@ export default function RiesgosDelCargo({num}) {
     })),
   });
 
-  useEffect(() => {console.log(riesgos)},[riesgos])
+  useEffect(() => {console.log(equiposProteccion)},[equiposProteccion])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +49,7 @@ export default function RiesgosDelCargo({num}) {
             alert('Error al obtener el perfil. Inténtalo nuevamente.');
             return;
           }
-
+          setEquiposProteccion(perfil.riesgosDelCargo[0]?.equipos)
           const factoresDeRiesgo = perfil.riesgosDelCargo[0]?.factoresDeRiesgo || [];
 
           const mapRiesgos = (tipo, length) =>
@@ -95,6 +95,14 @@ export default function RiesgosDelCargo({num}) {
       };
       return updatedRiesgos;
     });
+  };
+
+  const handleEquiposInputChange = (key) => {
+    // Update state dynamically based on the selected value
+    setEquiposProteccion((prevState) => ({
+      ...prevState,
+      [key]: !prevState[key], // Toggle the selected key
+    }));
   };
 
   const enviarDatos = async () => {
@@ -160,7 +168,7 @@ export default function RiesgosDelCargo({num}) {
     try {
       if (num===0){
         const id_new = (await obtenerSiguienteIdPerfil())-1
-        const result = await updateRiesgosDelCargo(id_new, nuevosFactoresDeRiesgo);
+        const result = await updateRiesgosDelCargo(id_new, nuevosFactoresDeRiesgo, equiposProteccion);
         if (result) {
           console.log('Riesgos del cargo actualizados exitosamente:', result);
           // Redirigir a otra página después de enviar los datos
@@ -177,6 +185,7 @@ export default function RiesgosDelCargo({num}) {
           return handleError('Error al obtener el perfil. Inténtalo nuevamente.');
         }
         perfil.riesgosDelCargo[0].factoresDeRiesgo=(nuevosFactoresDeRiesgo);
+        perfil.riesgosDelCargo[0].equipos=equiposProteccion;
         const result = await updateVersion(num, perfil);
         if (result) {
           console.log('Riesgos del cargo actualizados exitosamente:', result);
@@ -307,7 +316,29 @@ export default function RiesgosDelCargo({num}) {
 
         <div className={styles.riesgoSection}>
           <h3>Equipo</h3>
+          <div className={styles.radioGroup}>
+          <div className={styles.square}>
+            {[
+              { label: 'Mascarilla', key: 'mascarilla' },
+              { label: 'Gafas', key: 'gafas' },
+              { label: 'Guantes', key: 'guante' },
+              { label: 'Vestimenta Antifluido', key: 'vestimenta' },
+            ].map(({ label, key }) => (
+              <label key={key} className={styles.radioOption}>
+                <input
+                  type="checkbox"
+                  name={`Equipo-${key}`}
+                  value={label}
+                  className={styles.radioInput}
+                  checked={equiposProteccion[key]} // Bind to the existing state key
+                  onChange={() => handleEquiposInputChange(key)} // Update the specific key
+                />
+                {label}
+              </label>
+            ))}
+          </div>
         </div>
+      </div>
 
         <button className={styles.nextButton} onClick={enviarDatos}>
           Enviar

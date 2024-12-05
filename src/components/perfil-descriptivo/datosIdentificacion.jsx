@@ -123,7 +123,7 @@ const handleChange = (e) => {
       if(num===0){
         const id_new = await obtenerSiguienteIdPerfil()
         const dataToSend = {
-          id: id_new, // Puedes generar o asignar el ID que corresponda
+          id_perfil_descriptivo: id_new, // Puedes generar o asignar el ID que corresponda
           datos_e_identificacion_del_cargo: [
             {
               id: id_new, // Asegúrate de usar el mismo ID o uno adecuado
