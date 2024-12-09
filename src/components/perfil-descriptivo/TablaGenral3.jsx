@@ -34,7 +34,7 @@ const CompetenciasTable = ({id_generado}) => {
   return (
     <div
       style={{
-        padding: "20px",
+        padding: "0px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -66,7 +66,7 @@ const CompetenciasTable = ({id_generado}) => {
                   Competencias requeridas para el óptimo desenvolvimiento de un cargo
                 </span>
                 {/* Botón */}
-                <EditProfileButton editRoute="/ruta/para/CompleteTable" />
+                <EditProfileButton editRoute={`/admin/analisis-puestos/perfiles/competencias/${id_generado}`} />
               </div>
             </th>
           </tr>

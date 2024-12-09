@@ -9,7 +9,9 @@ import ConfirmacionPopup from '../popUp/ConfirmacionPopup';
 import {obtenerSiguienteIdPerfil} from '../../services/idPerfil.dao'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSession } from "next-auth/react";
 import { createVersion, fetchVersionById, updateVersion } from '@src/services/examenesyValoracionesMedicas.dao';
+import { getListaDepartamentos } from '@src/services/department.dao';
 
 export default function PerfilDescriptivo( { num }) {
   const [alertMessage, setAlertMessage] = useState('');
@@ -17,6 +19,41 @@ export default function PerfilDescriptivo( { num }) {
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});
+  const { data: session } = useSession();
+  const [departments, setDepartments]=useState([])
+
+  useEffect(() => {
+    console.log(session)
+    if (session) {
+      const fetchDepartments = async () => {
+        try{
+          const responseData = await getListaDepartamentos(session);
+          console.log(responseData)
+          setDepartments(responseData.departments)
+        }
+        catch{
+
+        }
+      }
+      fetchDepartments()
+    }
+  }, [session]);
+
+  useEffect(() => {
+    if (session && formData.departamento) {
+      const fetchDepartmentsPeople = async () => {
+        try{
+          const responseData = await getDepartamentoById(formData.departamento, session);
+          console.log(responseData)
+          setDepartments(responseData.departments)
+        }
+        catch{
+
+        }
+      }
+      fetchDepartmentsPeople()
+    }
+  }, [formData.departamento]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -94,7 +131,7 @@ const handleChange = (e) => {
     if (!formData.mision_del_cargo) errors.mision_del_cargo = 'La misión es obligatoria';
   
     setFormErrors(errors);
-    return Object.keys(errors).length === 0;
+    return Object.keys(errors)?.length === 0;
   };
 
   const handleConfirm = async () => {
@@ -102,7 +139,7 @@ const handleChange = (e) => {
       if(num===0){
         const id_new = await obtenerSiguienteIdPerfil()
         const dataToSend = {
-          id: id_new, // Puedes generar o asignar el ID que corresponda
+          id_perfil_descriptivo: id_new, // Puedes generar o asignar el ID que corresponda
           datos_e_identificacion_del_cargo: [
             {
               id: id_new, // Asegúrate de usar el mismo ID o uno adecuado
@@ -150,6 +187,7 @@ const handleChange = (e) => {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': '7zXnBjF5PBl7EzG/WhATQw==',
+            'Token': session.user.data.token
           },
           body: JSON.stringify(dataToSend),
         });
@@ -161,7 +199,7 @@ const handleChange = (e) => {
         setFormData({});
 
         // Redirigir a la nueva URL
-        window.location.href = 'http://localhost:3000/servicios/atencion-colaborador/actividades';
+        window.location.href = '/admin/analisis-puestos/perfiles/actividades';
       }
       else{
         const perfil = await fetchVersionById(num);
@@ -188,7 +226,7 @@ const handleChange = (e) => {
         if (result) {
           console.log('Nuevo perfil: ',result)
           // Redirige a otra ruta después de una creación exitosa
-          window.location.href = `/servicios/atencion-colaborador/admin/admin-tabla/${num}`; // Cambia esta ruta según sea necesario
+          window.location.href = `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`; // Cambia esta ruta según sea necesario
         } else {
           alert('No se pudo crear la versión. Por favor, intenta nuevamente.');
         }
@@ -207,6 +245,11 @@ const handleChange = (e) => {
 
   const handleCloseAlert = () => {
     setShowAlert(false);
+  };
+
+  const handleSelectChange = (event) => {
+    const selectedDepartmentId = event.target.value;
+    setFormData({ ...formData, [event.target.name]: selectedDepartmentId });
   };
 
   return (
@@ -237,8 +280,21 @@ const handleChange = (e) => {
             <input name="nombre_del_cargo" type="text" placeholder="Escriba el nombre del cargo" required value={formData.nombre_del_cargo} onChange={handleChange} />
 
             <label>Departamento:</label>
-            <input name="departamento" type="text" placeholder="Escriba el departamento del cargo" required value={formData.departamento} onChange={handleChange} />
-
+            <select
+              id="department-select"
+              onChange={handleSelectChange}
+              name="departamento"
+              value={formData.departamento || ""}
+            >
+              <option value="" disabled>
+                Seleccione un departamento
+              </option>
+              {departments?.map((department) => (
+                <option key={department.id} value={department.id}>
+                  {department.department_name}
+                </option>
+              ))}
+            </select>
             <label>Reporta a:</label>
             <input name="reporta_a" type="text" placeholder="Escriba a quién reporta el cargo" required value={formData.reporta_a} onChange={handleChange} />
 
@@ -262,7 +318,7 @@ const handleChange = (e) => {
             <textarea name="mision_del_cargo" placeholder="Escriba la misión del cargo" required value={formData.mision_del_cargo} onChange={handleChange}></textarea>
 
             <button className={styles.nextButton} type="submit">
-              Actualizar
+              {num!=0?"Actualizar":"Siguiente"}
             </button>
           </div>
         </form>

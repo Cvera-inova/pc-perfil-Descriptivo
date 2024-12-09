@@ -1,9 +1,9 @@
 import { createVersion, fetchVersionById, updateVersion } from '@src/services/examenesyValoracionesMedicas.dao';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ConfirmacionPopup from '../popUp/ConfirmacionPopup';
 import {obtenerSiguienteIdPerfil} from '../../services/idPerfil.dao'
 
-export default function PerfilDescriptivoExamenes() {
+export default function PerfilDescriptivoExamenes({num}) {
   // Estado para Reintegro y Especiales (Select Inputs)
   const [reintegro, setReintegro] = useState('');
   const [especiales, setEspeciales] = useState('');
@@ -67,6 +67,55 @@ export default function PerfilDescriptivoExamenes() {
       'Todas',
     ])
   );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("Component initialized with num:", num);
+      if (num !== 0) {
+        try {
+          const perfil = await fetchVersionById(num);
+          if (!perfil) {
+            alert("Error al obtener el perfil. Inténtalo nuevamente.");
+            setShowPopup(false);
+            return;
+          }
+          const fetchedExamenes=(perfil.versiones[0].examenes[0].examenes)
+
+          const preocupacionalesData = fetchedExamenes.find((e) => e.tipo === 'preocupacional')?.examenes || [];
+          const periodicosData = fetchedExamenes.find((e) => e.tipo === 'periodico')?.examenes || [];
+          const salidaData = fetchedExamenes.find((e) => e.tipo === 'salida')?.examenes || [];
+
+          // Update states based on fetched data
+          setPreocupacionales((prev) =>
+            Object.keys(prev).reduce((acc, key) => {
+              acc[key] = preocupacionalesData.includes(key);
+              return acc;
+            }, {})
+          );
+
+          setPeriodicos((prev) =>
+            Object.keys(prev).reduce((acc, key) => {
+              acc[key] = periodicosData.includes(key);
+              return acc;
+            }, {})
+          );
+
+          setReintegro(fetchedExamenes.find((e) => e.tipo === 'reintegro')?.opcionSeleccionada)
+          setEspeciales(fetchedExamenes.find((e) => e.tipo === 'especiales')?.opcionSeleccionada)
+          setSalida((prev) =>
+            Object.keys(prev).reduce((acc, key) => {
+              acc[key] = salidaData.includes(key);
+              return acc;
+            }, {})
+          );
+        } catch (error) {
+          console.error("Error fetching the perfil:", error);
+          alert("Error al obtener el perfil. Inténtalo nuevamente.");
+        }
+      }
+    };
+    fetchData();
+}, [num]);
 
   // Estado para Popup de Confirmación
   const [showPopup, setShowPopup] = useState(false);
@@ -167,40 +216,40 @@ export default function PerfilDescriptivoExamenes() {
 
     console.log('Nueva Versión:', nuevaVersion);
 
-    // ID del perfil al que se añadirá la nueva versión
     try {
-      // Obtener el perfil existente
-      const id_new = (await obtenerSiguienteIdPerfil())-1
-      const perfil = await fetchVersionById(id_new);
+      const perfilId = num === 0 ? (await obtenerSiguienteIdPerfil()) - 1 : num;
+      const perfil = await fetchVersionById(perfilId);
+  
       if (!perfil) {
-        alert('Error al obtener el perfil. Inténtalo nuevamente.');
-        setShowPopup(false);
-        return;
+        return handleError('Error al obtener el perfil. Inténtalo nuevamente.');
       }
-
-      // Asegurarse de que la sección 'versiones' exista
+  
       if (!perfil.versiones || !Array.isArray(perfil.versiones)) {
         perfil.versiones = [];
       }
-
-      // Añadir la nueva versión al arreglo 'versiones'
-      perfil.versiones[0].examenes.push(nuevaVersion);
-
-      // Enviar la actualización al backend
-      const result = await updateVersion(id_new, perfil);
+  
+      if (num === 0) {
+        perfil.versiones[0].examenes[0] = nuevaVersion;
+      } else {
+        perfil.versiones[0].examenes[0] = nuevaVersion;
+      }
+  
+      const result = await updateVersion(perfilId, perfil);
       if (result) {
         console.log('Versión creada:', result);
-        // Redirige a otra ruta después de una creación exitosa
-        window.location.href = '/ruta-de-confirmacion'; // Cambia esta ruta según sea necesario
+        const redirectPath = num === 0 
+          ? '/admin/analisis-puestos/perfiles/' 
+          : `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`;
+        window.location.href = redirectPath;
       } else {
         alert('No se pudo crear la versión. Por favor, intenta nuevamente.');
       }
     } catch (error) {
       console.error('Error al crear la versión:', error);
       alert('Ocurrió un error al crear la versión. Por favor, intenta nuevamente.');
+    } finally {
+      setShowPopup(false);
     }
-
-    setShowPopup(false);
   };
 
   /**
@@ -343,7 +392,7 @@ export default function PerfilDescriptivoExamenes() {
             </div>
           </div>
 
-          <button className="next-button" onClick={handleSubmit}>Siguiente</button>
+          <button className="next-button" onClick={handleSubmit}>{num!=0?"Actualizar":"Guardar"}</button>
         </div>
       </div>
 

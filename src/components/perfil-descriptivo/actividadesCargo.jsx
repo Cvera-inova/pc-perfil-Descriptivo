@@ -1,9 +1,10 @@
 import { ActividadesService } from '@src/services/actividadesCargo.Dao';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ConfirmacionPopup from '../popUp/ConfirmacionPopup';
 import {obtenerSiguienteIdPerfil} from '../../services/idPerfil.dao'
+import { fetchVersionById } from '@src/services/examenesyValoracionesMedicas.dao';
 
-export default function ActividadesDelCargo() {
+export default function ActividadesDelCargo({ num }) {
   const [responsabilidad, setResponsabilidad] = useState('');
   const [autoridad, setAutoridad] = useState('');
   const [relacionamiento, setRelacionamiento] = useState({
@@ -11,6 +12,31 @@ export default function ActividadesDelCargo() {
     clientesExternos: { aplica: '' },
     ausenciaTemporal: '',
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("Component initialized with num:", num);
+      if (num !== 0) {
+        try {
+          const perfil = await fetchVersionById(num); // Replace `id_new` with `num`
+          if (!perfil) {
+            alert("Error al obtener el perfil. Inténtalo nuevamente.");
+            setShowPopup(false);
+            return;
+          }
+          console.log(perfil.datos[0])
+          setActividades(perfil.datos[0].actividades)
+          setRelacionamiento(perfil.datos[0].relacionamiento)
+          setResponsabilidad(perfil.datos[0].responsabilidadYAutoridad.responsabilidad)
+          setAutoridad(perfil.datos[0].responsabilidadYAutoridad.autoridad)
+        } catch (error) {
+          console.error("Error fetching the perfil:", error);
+          alert("Error al obtener el perfil. Inténtalo nuevamente.");
+        }
+      }
+    };
+    fetchData();
+}, [num]);
 
   const [actividades, setActividades] = useState([
     {
@@ -92,33 +118,65 @@ export default function ActividadesDelCargo() {
   const confirmarGuardarActividades = async () => {
     try {
       // Obtener el perfil existente
-      const id_new = (await obtenerSiguienteIdPerfil())-1
-      const perfilExistente = await ActividadesService.obtenerActividadPorId(id_new);
+      if (num===0){
+        const id_new = (await obtenerSiguienteIdPerfil())-1
+        const perfilExistente = await ActividadesService.obtenerActividadPorId(id_new);
 
-      // Actualizar solo la sección 'datos'
-      const nuevosDatos = [
-        {
-          id: id_new,
-          actividades,
-          responsabilidadYAutoridad: {
-            responsabilidad,
-            autoridad,
+        // Actualizar solo la sección 'datos'
+        const nuevosDatos = [
+          {
+            id: id_new,
+            actividades,
+            responsabilidadYAutoridad: {
+              responsabilidad,
+              autoridad,
+            },
+            relacionamiento,
           },
-          relacionamiento,
-        },
-      ];
+        ];
 
-      // Fusionar los nuevos datos con el perfil existente
-      const perfilActualizado = {
-        ...perfilExistente,
-        datos: nuevosDatos,
-      };
+        // Fusionar los nuevos datos con el perfil existente
+        const perfilActualizado = {
+          ...perfilExistente,
+          datos: nuevosDatos,
+        };
 
-      // Enviar el perfil completo actualizado al backend
-      await ActividadesService.actualizarActividad(id_new, perfilActualizado);
+        // Enviar el perfil completo actualizado al backend
+        await ActividadesService.actualizarActividad(id_new, perfilActualizado);
 
-      alert('Actividades guardadas exitosamente!');
-      window.location.href = 'http://localhost:3000/servicios/atencion-colaborador/competencias';
+        alert('Actividades guardadas exitosamente!');
+        window.location.href = '/admin/analisis-puestos/perfiles/competencias';
+      }
+      else{
+        const perfil = await fetchVersionById(num);
+        if (!perfil) {
+          alert('Error al obtener el perfil. Inténtalo nuevamente.');
+          return;
+        }
+        const nuevosDatos = [
+          {
+            id: num,
+            actividades,
+            responsabilidadYAutoridad: {
+              responsabilidad,
+              autoridad,
+            },
+            relacionamiento,
+          },
+        ];
+
+        // Fusionar los nuevos datos con el perfil existente
+        const perfilActualizado = {
+          ...perfil,
+          datos: nuevosDatos,
+        };
+        // Enviar el perfil completo actualizado al backend
+        await ActividadesService.actualizarActividad(num, perfilActualizado);
+
+        alert('Actividades guardadas exitosamente!');
+        window.location.href = `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`;
+      }
+      
     } catch (error) {
       console.error(error);
       alert('Error al guardar las actividades');
@@ -170,6 +228,7 @@ export default function ActividadesDelCargo() {
                 })
               }
               defaultValue=""
+              value={relacionamiento.clientesInternos.aplica}
             >
               <option value="" disabled>
                 Seleccione una opción
@@ -189,6 +248,7 @@ export default function ActividadesDelCargo() {
                 })
               }
               defaultValue=""
+              value={relacionamiento.clientesExternos.aplica}
             >
               <option value="" disabled>
                 Seleccione una opción
@@ -297,7 +357,7 @@ export default function ActividadesDelCargo() {
         {/* Botón para Guardar Actividades */}
         <div className="button-group">
           <button className="next-button" onClick={guardarActividades}>
-            Guardar Actividades
+          {num!=0?"Actualizar":"Siguiente"}
           </button>
         </div>
       </div>

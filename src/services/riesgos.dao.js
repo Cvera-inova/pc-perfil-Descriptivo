@@ -137,7 +137,7 @@ export const obtenerUltimoIdRiesgo = async () => {
  * @param {Array<Object>} nuevosFactoresDeRiesgo - Array con los nuevos factores de riesgo.
  * @returns {Promise<Object|null>} - Retorna el perfil actualizado o null si hubo un error.
  */
-export const updateRiesgosDelCargo = async (perfilId, nuevosFactoresDeRiesgo) => {
+export const updateRiesgosDelCargo = async (perfilId, nuevosFactoresDeRiesgo, nuevosEquipos) => {
   try {
     // 1. Obtener el perfil existente.
     const perfilResponse = await fetch(`${BASE_URL}/${perfilId}`, { headers });
@@ -170,6 +170,8 @@ export const updateRiesgosDelCargo = async (perfilId, nuevosFactoresDeRiesgo) =>
     // 4. Actualizar los `factoresDeRiesgo` con los nuevos datos.
     perfil.riesgosDelCargo[0].factoresDeRiesgo  =
       nuevosFactoresDeRiesgo;
+
+    perfil.riesgosDelCargo[0].equipos=nuevosEquipos;
 
     // 5. Enviar la actualización al servidor.
     const updateResponse = await fetch(`${BASE_URL}/${perfilId}`, {

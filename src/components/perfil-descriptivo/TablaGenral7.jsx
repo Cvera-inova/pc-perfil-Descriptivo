@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchRiesgoDelCargoById } from '@src/services/riesgos.dao';
+import EditProfileButton from '../buttons/edit-profile-button';
 
 
 const RiesgosAsociadosTable = ({id_generado}) => {
@@ -60,13 +61,45 @@ const RiesgosAsociadosTable = ({id_generado}) => {
   }
 
   return (
-    <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ backgroundColor: '#EEE', width: '80%', textAlign: 'center', borderRadius: '8px', marginBottom: '10px' }}>
-        <h2 style={{ color: '#21498E', margin: 0, padding: '10px' }}>Riesgos asociados al cargo</h2>
-      </div>
+    <div style={{ padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    
       <div style={{ overflowX: 'auto', width: '80%' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', border: '2px solid #000', borderRadius: '8px' }}>
           <thead>
+          <tr>
+              <th
+                colSpan="14"
+                style={{
+                  backgroundColor: "#EEE",
+                  padding: "10px",
+                  color: "#21498E",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* Texto centrado */}
+                  <span
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1.5em",
+                    }}
+                  >
+                    Riesgos asociados al cargo
+                  </span>
+                  {/* Botón */}
+                  <EditProfileButton editRoute={`/admin/analisis-puestos/perfiles/riesgosCargo/${id_generado}`} />
+                </div>
+              </th>
+            </tr>
+ 
             <tr>
               <th style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)', padding: '10px', border: '2px solid #000', fontWeight: 'bold', backgroundColor: '#f0f0f0' }}>F.R</th>
               <th style={{ padding: '10px', border: '2px solid #000', fontWeight: 'bold', backgroundColor: '#f0f0f0' }}>Peligro identificado</th>

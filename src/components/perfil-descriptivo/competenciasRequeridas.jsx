@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { obtenerPerfilPorId, actualizarPerfil } from '@src/services/competenciasRequeridas.Dao';
 import styles from './CompetenciasRequeridas.module.css';
 import ConfirmacionPopup from '../popUp/ConfirmacionPopup';
 import {obtenerSiguienteIdPerfil} from '../../services/idPerfil.dao'
+import { fetchVersionById } from '@src/services/examenesyValoracionesMedicas.dao';
 
-export default function CompetenciasRequeridas() {
+export default function CompetenciasRequeridas({ num }) {
   const [competencias, setCompetencias] = useState([
     {
       descripcion: '',
@@ -14,6 +15,28 @@ export default function CompetenciasRequeridas() {
   ]);
   const [error, setError] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("Component initialized with num:", num);
+      if (num !== 0) {
+        try {
+          const perfil = await fetchVersionById(num); // Replace `id_new` with `num`
+          if (!perfil) {
+            alert("Error al obtener el perfil. Inténtalo nuevamente.");
+            setShowPopup(false);
+            return;
+          }
+          console.log(perfil.competencias_requeridas[0])
+          setCompetencias(perfil.competencias_requeridas[0].competencias)
+        } catch (error) {
+          console.error("Error fetching the perfil:", error);
+          alert("Error al obtener el perfil. Inténtalo nuevamente.");
+        }
+      }
+    };
+    fetchData();
+}, [num]);
 
   const agregarCompetencia = () => {
     setCompetencias([
@@ -62,44 +85,88 @@ export default function CompetenciasRequeridas() {
     setShowPopup(false);
 
     try {
-      // Obtener el perfil existente
-      const id_new = (await obtenerSiguienteIdPerfil())-1
-      const perfilExistente = await obtenerPerfilPorId(id_new);
+      if(num===0){
+        // Obtener el perfil existente
+        const id_new = (await obtenerSiguienteIdPerfil())-1
+        const perfilExistente = await obtenerPerfilPorId(id_new);
 
-      // Actualizar la sección de competencias_requeridas
-      const nuevasCompetenciasRequeridas = [
-        {
-          id: id_new,
-          competencias: competencias.map((competencia) => ({
-            descripcion: competencia.descripcion,
-            tipo: competencia.tipo,
-            grado: competencia.grado,
-          })),
-        },
-      ];
+        // Actualizar la sección de competencias_requeridas
+        const nuevasCompetenciasRequeridas = [
+          {
+            id: id_new,
+            competencias: competencias.map((competencia) => ({
+              descripcion: competencia.descripcion,
+              tipo: competencia.tipo,
+              grado: competencia.grado,
+            })),
+          },
+        ];
 
-      // Fusionar las nuevas competencias con el perfil existente
-      const perfilActualizado = {
-        ...perfilExistente,
-        competencias_requeridas: nuevasCompetenciasRequeridas,
-      };
+        // Fusionar las nuevas competencias con el perfil existente
+        const perfilActualizado = {
+          ...perfilExistente,
+          competencias_requeridas: nuevasCompetenciasRequeridas,
+        };
 
-      // Enviar el perfil completo actualizado al backend
-      const resultado = await actualizarPerfil(id_new, perfilActualizado);
+        // Enviar el perfil completo actualizado al backend
+        const resultado = await actualizarPerfil(id_new, perfilActualizado);
 
-      if (resultado) {
-        console.log('Competencias enviadas:', resultado);
-        alert('Competencias enviadas exitosamente.');
+        if (resultado) {
+          console.log('Competencias enviadas:', resultado);
+          alert('Competencias enviadas exitosamente.');
 
-        // Resetear el formulario
-        setCompetencias([{ descripcion: '', tipo: '', grado: '' }]);
-        setError('');
+          // Resetear el formulario
+          setCompetencias([{ descripcion: '', tipo: '', grado: '' }]);
+          setError('');
 
-        // Redirigir a otra página
-        window.location.href = 'http://localhost:3000/servicios/atencion-colaborador/perfilDuro';
-      } else {
-        console.error('Error al enviar competencias:', perfilActualizado);
-        alert('Ocurrió un error al enviar las competencias.');
+          // Redirigir a otra página
+          window.location.href = '/admin/analisis-puestos/perfiles/perfilDuro';
+        } else {
+          console.error('Error al enviar competencias:', perfilActualizado);
+          alert('Ocurrió un error al enviar las competencias.');
+          
+        }
+      }
+      else{
+        const perfil = await fetchVersionById(num);
+        if (!perfil) {
+          alert('Error al obtener el perfil. Inténtalo nuevamente.');
+          return;
+        }
+        const nuevasCompetenciasRequeridas = [
+          {
+            id: num,
+            competencias: competencias.map((competencia) => ({
+              descripcion: competencia.descripcion,
+              tipo: competencia.tipo,
+              grado: competencia.grado,
+            })),
+          },
+        ];
+
+        // Fusionar las nuevas competencias con el perfil existente
+        const perfilActualizado = {
+          ...perfil,
+          competencias_requeridas: nuevasCompetenciasRequeridas,
+        };
+
+        // Enviar el perfil completo actualizado al backend
+        const resultado = await actualizarPerfil(num, perfilActualizado);
+
+        if (resultado) {
+          console.log('Competencias enviadas:', resultado);
+          alert('Competencias enviadas exitosamente.');
+
+          // Resetear el formulario
+          setCompetencias([{ descripcion: '', tipo: '', grado: '' }]);
+          setError('');
+
+          // Redirigir a otra página
+          window.location.href = `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`;
+        } else {
+          console.error('Error al actualizar competencias:', perfilActualizado);
+          alert('Ocurrió un error al actualizar las competencias.');
+        }
       }
     } catch (error) {
       console.error('Error al enviar competencias:', error);
@@ -185,7 +252,7 @@ export default function CompetenciasRequeridas() {
 
         <div className={styles.buttonContainer}>
           <button className={styles.nextButton} onClick={enviarCompetencias}>
-            Siguiente
+            {num!=0?"Actualizar":"Siguente"}
           </button>
         </div>
       </div>
