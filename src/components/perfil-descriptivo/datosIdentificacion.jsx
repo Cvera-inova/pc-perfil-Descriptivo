@@ -40,6 +40,22 @@ export default function PerfilDescriptivo( { num }) {
   }, [session]);
 
   useEffect(() => {
+    if (session && formData.departamento) {
+      const fetchDepartmentsPeople = async () => {
+        try{
+          const responseData = await getDepartamentoById(formData.departamento, session);
+          console.log(responseData)
+          setDepartments(responseData.departments)
+        }
+        catch{
+
+        }
+      }
+      fetchDepartmentsPeople()
+    }
+  }, [formData.departamento]);
+
+  useEffect(() => {
     const fetchData = async () => {
       console.log("Component initialized with num:", num);
       if (num !== 0) {
@@ -115,7 +131,7 @@ const handleChange = (e) => {
     if (!formData.mision_del_cargo) errors.mision_del_cargo = 'La misión es obligatoria';
   
     setFormErrors(errors);
-    return Object.keys(errors).length === 0;
+    return Object.keys(errors)?.length === 0;
   };
 
   const handleConfirm = async () => {
@@ -171,6 +187,7 @@ const handleChange = (e) => {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': '7zXnBjF5PBl7EzG/WhATQw==',
+            'Token': session.user.data.token
           },
           body: JSON.stringify(dataToSend),
         });
@@ -182,7 +199,7 @@ const handleChange = (e) => {
         setFormData({});
 
         // Redirigir a la nueva URL
-        window.location.href = 'http://localhost:3000/servicios/atencion-colaborador/actividades';
+        window.location.href = '/admin/analisis-puestos/perfiles/actividades';
       }
       else{
         const perfil = await fetchVersionById(num);
@@ -209,7 +226,7 @@ const handleChange = (e) => {
         if (result) {
           console.log('Nuevo perfil: ',result)
           // Redirige a otra ruta después de una creación exitosa
-          window.location.href = `/servicios/atencion-colaborador/admin/admin-tabla/${num}`; // Cambia esta ruta según sea necesario
+          window.location.href = `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`; // Cambia esta ruta según sea necesario
         } else {
           alert('No se pudo crear la versión. Por favor, intenta nuevamente.');
         }
@@ -263,8 +280,13 @@ const handleChange = (e) => {
             <input name="nombre_del_cargo" type="text" placeholder="Escriba el nombre del cargo" required value={formData.nombre_del_cargo} onChange={handleChange} />
 
             <label>Departamento:</label>
-            <select id="department-select" onChange={handleSelectChange} name="departamento">
-              <option value={formData.departamento} disabled selected>
+            <select
+              id="department-select"
+              onChange={handleSelectChange}
+              name="departamento"
+              value={formData.departamento || ""}
+            >
+              <option value="" disabled>
                 Seleccione un departamento
               </option>
               {departments?.map((department) => (
@@ -273,7 +295,6 @@ const handleChange = (e) => {
                 </option>
               ))}
             </select>
-
             <label>Reporta a:</label>
             <input name="reporta_a" type="text" placeholder="Escriba a quién reporta el cargo" required value={formData.reporta_a} onChange={handleChange} />
 
@@ -297,7 +318,7 @@ const handleChange = (e) => {
             <textarea name="mision_del_cargo" placeholder="Escriba la misión del cargo" required value={formData.mision_del_cargo} onChange={handleChange}></textarea>
 
             <button className={styles.nextButton} type="submit">
-              {num!=0?"Actualizar":"Guardar"}
+              {num!=0?"Actualizar":"Siguiente"}
             </button>
           </div>
         </form>

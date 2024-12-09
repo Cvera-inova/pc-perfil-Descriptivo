@@ -229,7 +229,7 @@ export default function PerfilDescriptivoExamenes({num}) {
       }
   
       if (num === 0) {
-        perfil.versiones[0]?.examenes.push(nuevaVersion);
+        perfil.versiones[0].examenes[0] = nuevaVersion;
       } else {
         perfil.versiones[0].examenes[0] = nuevaVersion;
       }
@@ -238,8 +238,8 @@ export default function PerfilDescriptivoExamenes({num}) {
       if (result) {
         console.log('Versión creada:', result);
         const redirectPath = num === 0 
-          ? '/ruta-de-confirmacion' 
-          : `/servicios/atencion-colaborador/admin/admin-tabla/${num}`;
+          ? '/admin/analisis-puestos/perfiles/' 
+          : `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`;
         window.location.href = redirectPath;
       } else {
         alert('No se pudo crear la versión. Por favor, intenta nuevamente.');

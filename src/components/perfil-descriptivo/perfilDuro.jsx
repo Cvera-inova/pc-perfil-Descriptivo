@@ -204,8 +204,8 @@ export default function PerfilDuro({num}) {
       if (resultado) {
         alert('Perfil Duro actualizado exitosamente.');
         const redirectUrl = isNuevoPerfil
-          ? '/servicios/atencion-colaborador/riesgosCargo'
-          : `/servicios/atencion-colaborador/admin/admin-tabla/${num}`;
+          ? '/admin/analisis-puestos/perfiles/riesgosCargo'
+          : `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`;
         window.location.href = redirectUrl;
       } else {
         throw new Error('No se pudo actualizar el perfil.');
@@ -674,7 +674,7 @@ export default function PerfilDuro({num}) {
 
         {/* Botón de envío dentro del formulario */}
         <button type="submit" className="next-button">
-          Enviar Perfil
+        {num!=0?"Actualizar":"Siguente"}
         </button>
       </form>
 

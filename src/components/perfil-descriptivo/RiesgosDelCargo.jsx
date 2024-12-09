@@ -173,7 +173,7 @@ export default function RiesgosDelCargo({num}) {
           console.log('Riesgos del cargo actualizados exitosamente:', result);
           // Redirigir a otra página después de enviar los datos
           window.location.href =
-            '/servicios/atencion-colaborador/examenesMedicos';
+            '/admin/analisis-puestos/perfiles/examenesMedicos';
         } else {
           console.error('No se pudo actualizar los riesgos del cargo.');
           alert('No se pudo actualizar los riesgos del cargo. Por favor, intenta nuevamente.');
@@ -191,7 +191,7 @@ export default function RiesgosDelCargo({num}) {
           console.log('Riesgos del cargo actualizados exitosamente:', result);
           // Redirigir a otra página después de enviar los datos
           window.location.href =
-            `/servicios/atencion-colaborador/admin/admin-tabla/${num}`;
+            `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`;
         } else {
           console.error('No se pudo actualizar los riesgos del cargo.');
           alert('No se pudo actualizar los riesgos del cargo. Por favor, intenta nuevamente.');
@@ -341,7 +341,7 @@ export default function RiesgosDelCargo({num}) {
       </div>
 
         <button className={styles.nextButton} onClick={enviarDatos}>
-          Enviar
+          {num!=0?"Actualizar":"Siguente"}
         </button>
       </div>
     </div>

@@ -120,7 +120,7 @@ export default function CompetenciasRequeridas({ num }) {
           setError('');
 
           // Redirigir a otra página
-          window.location.href = '/servicios/atencion-colaborador/perfilDuro';
+          window.location.href = '/admin/analisis-puestos/perfiles/perfilDuro';
         } else {
           console.error('Error al enviar competencias:', perfilActualizado);
           alert('Ocurrió un error al enviar las competencias.');
@@ -162,7 +162,7 @@ export default function CompetenciasRequeridas({ num }) {
           setError('');
 
           // Redirigir a otra página
-          window.location.href = `/servicios/atencion-colaborador/admin/admin-tabla/${num}`;
+          window.location.href = `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`;
         } else {
           console.error('Error al actualizar competencias:', perfilActualizado);
           alert('Ocurrió un error al actualizar las competencias.');

@@ -66,7 +66,7 @@ const EquiposProteccionIndividual = ({ id_generado }) => {
                 >
                   Equipos de protección individual para el puesto de trabajo
                 </span>
-                <EditProfileButton editRoute={`/servicios/atencion-colaborador/riesgosCargo/${id_generado}`} />
+                <EditProfileButton editRoute={`/admin/analisis-puestos/perfiles/riesgosCargo/${id_generado}`} />
               </div>
             </th>
           </tr>

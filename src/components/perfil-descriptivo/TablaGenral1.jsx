@@ -72,7 +72,7 @@ const LargeTable = ({id_generado}) => {
                 Datos de Identificación del Cargo
               </span>
               {/* Botón */}
-              <EditProfileButton editRoute={`/servicios/atencion-colaborador/perfil-cargo/${id_generado}`} />
+              <EditProfileButton editRoute={`/admin/analisis-puestos/perfiles/perfil-cargo/${id_generado}`} />
             </div>
           </th>
         </tr>
@@ -161,7 +161,7 @@ const LargeTable = ({id_generado}) => {
                 Actividades
               </span>
               {/* Botón */}
-              <EditProfileButton editRoute={`/servicios/atencion-colaborador/actividades/${id_generado}`} />
+              <EditProfileButton editRoute={`/admin/analisis-puestos/perfiles/actividades/${id_generado}`} />
             </div>
           </th>
         </tr>

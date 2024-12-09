@@ -70,7 +70,7 @@ const ExamenesValoracionesMedicasTable = ({id_generado}) => {
                     Exámenes y valoraciones médicas ocupacionales
                   </span>
                   {/* Botón */}
-                  <EditProfileButton editRoute={`/servicios/atencion-colaborador/examenesMedicos/${id_generado}`} />
+                  <EditProfileButton editRoute={`/admin/analisis-puestos/perfiles/examenesMedicos/${id_generado}`} />
                 </div>
               </th>
             </tr>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { obtenerTodosDatos } from '@src/services/datosCargo.Dao';
 import styled from 'styled-components';
+import { useRouter } from "next/navigation";
 
 const AdminPanel = () => {
   const [datosCargos, setDatosCargos] = useState([]);
-
+  const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -60,7 +61,7 @@ const AdminPanel = () => {
 
   // Función para redirigir al perfil con ID
   const handleGoToProfile = (id) => {
-    window.location.href = `/servicios/atencion-colaborador/admin/admin-tabla/${id}`; // Redirige a la página del perfil
+    window.location.href = `/admin/analisis-puestos/perfiles/tabla-perfil/${id}`; // Redirige a la página del perfil
   };
 
   if (datosCargos.length === 0) {
@@ -70,6 +71,7 @@ const AdminPanel = () => {
   return (
     <AdminContainer>
       <Title>Administración de Perfiles de Cargo</Title>
+      <TopButton onClick={() => router.push('/admin/analisis-puestos')}>Regresar</TopButton>
       <Table>
         <thead>
           <tr>
@@ -187,5 +189,22 @@ const ViewButton = styled.button`
 
   &:active {
     transform: scale(0.98);
+  }
+`;
+const StyledButton = styled.button`
+  background-color: #21498e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+`;
+
+const TopButton = styled(StyledButton)`
+  width: 25%;
+  margin-bottom: 20px;
+  
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;

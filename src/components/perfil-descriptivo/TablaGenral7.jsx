@@ -95,7 +95,7 @@ const RiesgosAsociadosTable = ({id_generado}) => {
                     Riesgos asociados al cargo
                   </span>
                   {/* Botón */}
-                  <EditProfileButton editRoute={`/servicios/atencion-colaborador/riesgosCargo/${id_generado}`} />
+                  <EditProfileButton editRoute={`/admin/analisis-puestos/perfiles/riesgosCargo/${id_generado}`} />
                 </div>
               </th>
             </tr>

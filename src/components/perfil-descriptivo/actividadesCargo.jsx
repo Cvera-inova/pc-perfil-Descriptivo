@@ -145,7 +145,7 @@ export default function ActividadesDelCargo({ num }) {
         await ActividadesService.actualizarActividad(id_new, perfilActualizado);
 
         alert('Actividades guardadas exitosamente!');
-        window.location.href = 'http://localhost:3000/servicios/atencion-colaborador/competencias';
+        window.location.href = '/admin/analisis-puestos/perfiles/competencias';
       }
       else{
         const perfil = await fetchVersionById(num);
@@ -174,7 +174,7 @@ export default function ActividadesDelCargo({ num }) {
         await ActividadesService.actualizarActividad(num, perfilActualizado);
 
         alert('Actividades guardadas exitosamente!');
-        window.location.href = `/servicios/atencion-colaborador/admin/admin-tabla/${num}`;
+        window.location.href = `/admin/analisis-puestos/perfiles/tabla-perfil/${num}`;
       }
       
     } catch (error) {
@@ -357,7 +357,7 @@ export default function ActividadesDelCargo({ num }) {
         {/* Botón para Guardar Actividades */}
         <div className="button-group">
           <button className="next-button" onClick={guardarActividades}>
-          {num!=0?"Actualizar":"Guardar Actividades"}
+          {num!=0?"Actualizar":"Siguiente"}
           </button>
         </div>
       </div>
